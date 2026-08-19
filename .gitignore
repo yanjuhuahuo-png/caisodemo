@@ -1,4 +1,7 @@
-code/data/*
+# V0.4.5: FULL 数据产物（canonical.parquet / master.csv / predictions_v2.csv /
+# stage3/risk_features.parquet）随仓库提交 → 克隆后 FULL 模式开箱即用。
+# 只排除临时日志，不排除数据产物本身。
+code/data/*.log
 code/models/*
 __pycache__/
 *.pyc
@@ -10,5 +13,3 @@ catboost_info/
 .env
 # Agent 会话运行时存储（V0.4.1）
 data/agent_sessions/
-
-
