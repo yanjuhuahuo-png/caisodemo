@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAISO 电价预测 · 交易决策助手</title>
+<style>
+  :root {
+    --bg: #f4f6f9; --surface: #ffffff; --surface-2: #f8fafc;
+    --border: #dfe4ea; --text: #1c2430; --text-dim: #6b7684;
+    --accent: #1f6feb; --accent-soft: #e8f0fe;
+    --ok: #14845c; --ok-bg: #e5f5ec;
+    --err: #c0392b; --err-bg: #fdecea;
+    --warn: #9a6b00; --warn-bg: #fdf3d7;
+    --buy: #1f6feb; --buy-bg: #e8f0fe;
+    --sell: #14845c; --sell-bg: #e5f5ec;
+    --hold: #6b7684; --hold-bg: #eef1f5;
+    --radius: 10px; --shadow: 0 1px 3px rgba(16, 24, 40, .06);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font-family: "Segoe UI", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+         font-size: 14px; line-height: 1.55; }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 20px 20px 48px; }
+
+  /* ---------- 顶栏 ---------- */
+  .topbar { display: flex; justify-content: space-between; align-items: center; gap: 12px;
+            padding: 14px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 18px; }
+  .brand h1 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: .2px; }
+  .brand .sub { margin-top: 3px; font-size: 12.5px; color: var(--text-dim); }
+  .top-links a { color: var(--accent); font-size: 13px; text-decoration: none; margin-left: 16px; }
+  .top-links a:hover { text-decoration: underline; }
+
+  /* ---------- 状态条 ---------- */
+  .status-strip { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .chip { font-size: 11.5px; padding: 3px 10px; border-radius: 999px;
+          border: 1px solid var(--border); background: var(--surface); color: var(--text-dim); }
+  .chip b { color: var(--text); font-weight: 600; }
+  .chip.warn { border-color: #ead9a8; background: var(--warn-bg); color: var(--warn); }
+
+  /* ---------- 控制条 ---------- */
+  .controls { display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap;
+              padding: 14px 16px; background: var(--surface); border: 1px solid var(--border);
+              border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 16px; }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field label { font-size: 12px; color: var(--text-dim); font-weight: 600; }
+  .field input, .field select { padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px;
+                                font-size: 14px; min-width: 190px; background: var(--surface); color: var(--text); }
+  .field input:focus, .field select:focus { outline: none; border-color: var(--accent); }
+  .field .hint { font-size: 11px; color: var(--text-dim); }
+  .btn { border: none; border-radius: 8px; padding: 9px 22px; font-size: 14px; font-weight: 600;
+         background: var(--accent); color: #fff; cursor: pointer; }
+  .btn:hover { opacity: .92; }
+  .btn:disabled { opacity: .55; cursor: not-allowed; }
+
+  /* ---------- 结果区 ---------- */
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+          box-shadow: var(--shadow); padding: 18px 20px; margin-bottom: 14px; }
+  .card h2 { margin: 0 0 12px; font-size: 14px; font-weight: 700; color: var(--text); }
+  .card h2 .tag { font-size: 11.5px; color: var(--text-dim); font-weight: 400; margin-left: 8px; }
+
+  /* 决策头 */
+  .verdict-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .verdict-badge { padding: 10px 20px; border-radius: 10px; font-size: 18px; font-weight: 800; }
+  .verdict-badge.SELL_DA { background: var(--sell-bg); color: var(--sell); }
+  .verdict-badge.BUY_DA { background: var(--buy-bg); color: var(--buy); }
+  .verdict-badge.NO_TRADE { background: var(--hold-bg); color: var(--hold); }
+  .verdict-badge.alt { background: var(--warn-bg); color: var(--warn); font-size: 15px; }
+  .verdict-meta { font-size: 12.5px; color: var(--text-dim); }
+  .verdict-meta b { color: var(--text); }
+
+  /* 指标网格 */
+  .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 16px; }
+  .metric { border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; background: var(--surface-2); }
+  .metric .k { font-size: 11.5px; color: var(--text-dim); }
+  .metric .v { font-size: 19px; font-weight: 700; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .metric .v.pos { color: var(--sell); } .metric .v.neg { color: var(--err); }
+  .metric .v.strong { color: var(--accent); }
+
+  /* 买卖价位 */
+  .price-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 14px; }
+  .price-box { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+  .price-box .k { font-size: 11.5px; color: var(--text-dim); }
+  .price-box .v { font-size: 21px; font-weight: 800; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .price-box.sell { border-color: #bfe3d1; background: var(--sell-bg); }
+  .price-box.buy { border-color: #bcd3f7; background: var(--buy-bg); }
+  .price-box .note { font-size: 11px; color: var(--text-dim); margin-top: 3px; }
+
+  /* 依据列表 */
+  .reason-list { margin: 0; padding: 0; list-style: none; }
+  .reason-list li { position: relative; padding: 7px 0 7px 18px; font-size: 13.5px; border-bottom: 1px dashed var(--border); }
+  .reason-list li:last-child { border-bottom: none; }
+  .reason-list li::before { content: ""; position: absolute; left: 0; top: 13px; width: 6px; height: 6px;
+                            border-radius: 50%; background: var(--accent); }
+  .warn-note { margin-top: 10px; font-size: 12.5px; color: var(--warn); background: var(--warn-bg);
+               border: 1px solid #ead9a8; border-radius: 8px; padding: 8px 12px; }
+
+  /* 实际对比 */
+  .actual-box { border: 1px solid var(--border); border-left: 3px solid var(--accent);
+                border-radius: 8px; padding: 12px 14px; margin-top: 14px; background: var(--surface-2); }
+  .actual-box .t { font-size: 12.5px; font-weight: 700; margin-bottom: 8px; }
+  .actual-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; }
+  .actual-grid .m { font-size: 12px; }
+  .actual-grid .m .k { color: var(--text-dim); }
+  .actual-grid .m .v { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  details.summary-box { margin-top: 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+  details.summary-box summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--accent);
+                                padding: 10px 14px; list-style: none; }
+  details.summary-box summary::before { content: "▸ "; }
+  details.summary-box[open] summary::before { content: "▾ "; }
+  details.summary-box .body { margin: 0 14px 12px; padding: 12px; background: var(--surface-2);
+                              border: 1px solid var(--border); border-radius: 8px; font-size: 12.5px; }
+  .kv { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px; font-size: 12.5px; }
+  .kv .k { color: var(--text-dim); }
+  .kv ul { margin: 6px 0 0; padding-left: 18px; }
+
+  .empty, .loading { color: var(--text-dim); font-size: 13px; padding: 26px 0; text-align: center; }
+  .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--border);
+             border-top-color: var(--accent); border-radius: 50%; margin-right: 8px;
+             vertical-align: -2px; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .error-box { color: var(--err); background: var(--err-bg); border: 1px solid #f0c4bd;
+               border-radius: 8px; padding: 10px 14px; font-size: 13px; }
+
+  .foot { margin-top: 26px; padding-top: 12px; border-top: 1px solid var(--border);
+          font-size: 11.5px; color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand">
+      <h1>CAISO 电价预测</h1>
+      <div class="sub">结合历史价格、负荷预报与天气数据，预测目标日日前 / 实时电价，并给出买卖建议与依据。</div>
+    </div>
+    <div class="top-links">
+      <a href="/data-sources">数据来源</a>
+    </div>
+  </div>
+
+  <div class="status-strip">
+    <span class="chip">价格数据截至 <b>2026-08-05</b></span>
+    <span class="chip">负荷预报至 <b>2026-08-07</b></span>
+    <span class="chip">天气至 <b>2026-08-19</b></span>
+    <span class="chip warn">实验性预测 · 不保证盈利 · ALPHA=WEAK</span>
+  </div>
+
+  <div class="controls">
+    <div class="field">
+      <label>预测日期</label>
+      <input type="date" id="inp-td">
+      <span class="hint" id="td-hint"></span>
+    </div>
+    <div class="field">
+      <label>节点</label>
+      <select id="inp-node"></select>
+    </div>
+    <button class="btn" id="btn-fc">开始预测</button>
+    <span class="hint" style="margin-bottom:9px">决策时点 = 目标日前一日 10:00 PT，仅使用该时点前可见信息</span>
+  </div>
+
+  <div id="fc-out"></div>
+
+  <div class="foot">本系统为实验性研究工具，所有预测基于报价截止前可见的真实数据与推理估计，不构成投资建议，不保证盈利。</div>
+</div>
+
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt = (x, nd) => (x == null || Number.isNaN(Number(x))) ? "—" : Number(x).toLocaleString("en-US", { maximumFractionDigits: nd == null ? 1 : nd });
+const DEC_ZH = { SELL_DA: "卖出日前", BUY_DA: "买入日前", NO_TRADE: "不交易" };
+const DEC_ACTION = { SELL_DA: "SELL DA", BUY_DA: "BUY DA", NO_TRADE: "NO TRADE" };
+let DATE_RANGE = { min: "2024-01-10", max: "2026-08-19" };
+
+async function post(path, body) {
+  const r = await fetch(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  let d = null; try { d = await r.json(); } catch (e) { d = {}; }
+  if (!r.ok) { const e = d.error || {}; throw new Error(e.message || d.message || ("HTTP " + r.status)); }
+  return d;
+}
+
+async function init() {
+  const m = await fetch("/api/meta").then(r => r.json());
+  const nodes = m.nodes && typeof m.nodes === "object" && !Array.isArray(m.nodes)
+    ? Object.entries(m.nodes).map(([node, zone]) => ({ node, zone }))
+    : (m.nodes || []);
+  $("inp-node").innerHTML = nodes.map(n => `<option value="${esc(n.node)}">${esc(n.node)}（${esc(n.zone)}）</option>`).join("");
+  const fr = m.forecast_date_range || {};
+  if (fr.min) DATE_RANGE.min = fr.min;
+  if (fr.max) DATE_RANGE.max = fr.max;
+  const td = $("inp-td");
+  td.min = DATE_RANGE.min; td.max = DATE_RANGE.max;
+  td.value = "2026-08-06";
+  $("td-hint").textContent = "可选 " + DATE_RANGE.min + " ~ " + DATE_RANGE.max + "（历史日期可对比实际结果）";
+}
+
+async function run() {
+  const out = $("fc-out");
+  const td = $("inp-td").value, node = $("inp-node").value;
+  if (!td) { out.innerHTML = `<div class="error-box">请先在日历中选择预测日期</div>`; return; }
+  const btn = $("btn-fc"); btn.disabled = true;
+  out.innerHTML = `<div class="loading"><span class="spinner"></span>正在生成预测…</div>`;
+  try {
+    const r = await post("/api/forecast-day", { target_date: td, node });
+    render(out, r);
+  } catch (e) {
+    out.innerHTML = `<div class="error-box"><b>${esc(e.message)}</b></div>`;
+  } finally { btn.disabled = false; }
+}
+
+function render(out, r) {
+  const p = r.package || {};
+  const f = r.forecast || {};
+  const pr = r.prices || {};
+  const a = r.actual || null;
+  const dec = r.decision || "NO_TRADE";
+  const isTrade = dec !== "NO_TRADE";
+  const okStatus = r.status === "ok";
+  const badgeCls = okStatus ? dec : "alt";
+  const badgeText = okStatus ? (DEC_ZH[dec] || dec) : (r.status === "degraded" ? "预测不可用（未配置）" : "预测未通过校验");
+  const sanity = (r.sanity_warnings || []).map(w => `<div class="warn-note">⚠ ${esc(w)}</div>`).join("");
+  const covWarn = (p.coverage_warnings || []).map(w => `<li>${esc(w)}</li>`).join("");
+  const reasons = (r.reasons || []).map(x => `<li>${esc(x)}</li>`).join("");
+  const caveats = (r.caveats || []).map(x => `<li>${esc(x)}</li>`).join("");
+  const recents = (p.recent_prices || []).map(d => `${esc(d.date)}：DA ${fmt(d.da_avg)} / RT ${fmt(d.rtpd_avg)} / 价差 ${fmt(d.spread_avg)}`).join("<br>");
+  const stats = p.recent_stats || {};
+  const loadTxt = p.load_forecast ? `日均 ${fmt(p.load_forecast.avg)} MW · 峰值 ${fmt(p.load_forecast.peak)} MW（H${p.load_forecast.peak_hour}）` : "无负荷预报（截至 08-07）";
+  const wxTxt = p.weather_forecast ? `均温 ${fmt(p.weather_forecast.t2m_c_avg)}°C（最高 ${fmt(p.weather_forecast.t2m_c_max)}°C）· 辐射 ${fmt(p.weather_forecast.ssrd_wm2_avg)} W/m² · 风速 ${fmt(p.weather_forecast.wind100_avg)} m/s` : "无天气数据";
+  const statusBadge = r.degraded ? `<span class="chip warn">未配置推理引擎 · 基线估计</span>` : "";
+
+  const buySell = isTrade
+    ? `<div class="price-row">
+         <div class="price-box sell"><div class="k">建议卖出价 · 日前（SELL DA）</div><div class="v">${fmt(pr.sell_price)} $/MWh</div><div class="note">按预测日前价卖出</div></div>
+         <div class="price-box buy"><div class="k">建议买入价 · 实时（BUY RT）</div><div class="v">${fmt(pr.buy_price)} $/MWh</div><div class="note">按预测实时价买回</div></div>
+       </div>`
+    : `<div class="warn-note">决策为不交易（NO_TRADE）：不给出买入 / 卖出价位。</div>`;
+
+  let actualHtml = "";
+  if (a) {
+    const errSp = (f.spread_pred != null && a.spread_avg != null) ? (a.spread_avg - f.spread_pred) : null;
+    actualHtml = `<div class="actual-box">
+      <div class="t">实际结果（历史日期 · 事后揭晓，预测时不可见）</div>
+      <div class="actual-grid">
+        <div class="m"><div class="k">实际 DA 均值</div><div class="v">${fmt(a.da_avg)} $/MWh</div></div>
+        <div class="m"><div class="k">实际 RTPD 均值</div><div class="v">${fmt(a.rtpd_avg)} $/MWh</div></div>
+        <div class="m"><div class="k">实际价差</div><div class="v ${Number(a.spread_avg) >= 0 ? "pos" : "neg"}">${Number(a.spread_avg) >= 0 ? "+" : ""}${fmt(a.spread_avg)}</div></div>
+        <div class="m"><div class="k">价差预测误差</div><div class="v">${errSp == null ? "—" : (errSp >= 0 ? "+" : "") + fmt(errSp)}</div></div>
+      </div>
+      <details class="summary-box"><summary>逐小时实际（H1–H24）</summary><div class="body"><div class="kv">
+        ${(a.hours || []).map(h => `<div><span class="k">H${h.hour}</span> DA ${fmt(h.da)} · RT ${fmt(h.rtpd)} · 价差 ${fmt(h.spread)}</div>`).join("")}
+      </div></div></details>
+    </div>`;
+  }
+
+  out.innerHTML = `
+  <div class="card">
+    <div class="verdict-row">
+      <span class="verdict-badge ${badgeCls}">${esc(badgeText)}</span>
+      ${statusBadge}
+      <span class="verdict-meta">${esc(p.target_date)} · ${esc(p.node)}（${esc(p.zone)}）<br>决策时点 ${esc(p.decision_date)} 10:00 PT · ${esc(p.market_rule_version || "")}</span>
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="k">预测日前价 DA</div><div class="v">${fmt(f.da_price_pred)} $/MWh</div></div>
+      <div class="metric"><div class="k">预测实时价 RTPD</div><div class="v">${fmt(f.rtpd_price_pred)} $/MWh</div></div>
+      <div class="metric"><div class="k">预测价差 DA − RT</div><div class="v ${Number(f.spread_pred) >= 0 ? "pos" : "neg"}">${Number(f.spread_pred) >= 0 ? "+" : ""}${fmt(f.spread_pred)} $/MWh</div></div>
+      <div class="metric"><div class="k">把握度</div><div class="v">${esc(r.confidence || "—")}</div></div>
+    </div>
+    ${buySell}
+    ${sanity}
+  </div>
+
+  ${actualHtml ? `<div class="card">${actualHtml}</div>` : ""}
+
+  <div class="card">
+    <h2>决策依据<span class="tag">基于报价截止前可见数据</span></h2>
+    <ul class="reason-list">${reasons || "<li>无依据</li>"}</ul>
+    ${caveats.length ? `<h2 style="margin-top:14px">风险提示</h2><ul class="reason-list">${caveats}</ul>` : ""}
+  </div>
+
+  <div class="card">
+    <h2>数据与推理依据<span class="tag">全部为决策时点可见的真实数据</span></h2>
+    <details class="summary-box"><summary>近期价格与统计</summary><div class="body"><div class="kv">
+      <div><span class="k">最近 7 个交易日</span><br>${recents}</div>
+      <div><span class="k">历史统计</span><br>DA 均值 ${fmt(stats.da_mean)} · RT 均值 ${fmt(stats.rtpd_mean)} · 价差均值 ${fmt(stats.spread_mean)}（标准差 ${fmt(stats.spread_std)}）</div>
+      <div><span class="k">目标日负荷预报</span><br>${esc(loadTxt)}</div>
+      <div><span class="k">目标日天气（${esc(p.zone)}）</span><br>${esc(wxTxt)}</div>
+    </div></div></details>
+    ${covWarn ? `<details class="summary-box"><summary>数据覆盖说明</summary><div class="body"><ul>${covWarn}</ul></div></details>` : ""}
+    ${(p.honest_notes || []).length ? `<details class="summary-box"><summary>使用边界</summary><div class="body"><ul>${(p.honest_notes || []).map(n => `<li>${esc(n)}</li>`).join("")}</ul></div></details>` : ""}
+  </div>`;
+}
+
+$("btn-fc").addEventListener("click", run);
+init();
+</script>
+</body>
+</html>

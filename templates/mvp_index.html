@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAISO 交易决策助手 Trading Decision Agent</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='mvp.css') }}">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- A. Header（产品名 + 系统状态单行，不占首屏主位） -->
+  <header>
+    <div>
+      <h1>CAISO 交易决策助手 <span class="tag">Trading Decision Agent</span></h1>
+      <div class="sub">在日前报价截止前，根据当时可获得的信息，为次日节点交易提供买入日前 / 卖出日前 / 不交易建议，并说明原因。</div>
+    </div>
+    <div class="nav">
+      <span class="badge" id="llm-badge">LLM …</span>
+      <div class="sys-strip"><div class="grid" id="sys-grid"></div></div>
+      <a href="/data-sources">数据来源</a>
+      <a href="/how-it-works">系统如何做决策</a>
+      <a href="/forecast">未来电价预测（8/6-8/9）</a>
+      <button class="btn secondary small" id="btn-boundary">系统边界</button>
+    </div>
+  </header>
+
+  <!-- 系统边界 Drawer（原 MVP STATUS 内容降级至此） -->
+  <div class="boundary" id="boundary">
+    <div class="panel">
+      <span class="close" id="boundary-close">✕</span>
+      <h3>系统边界</h3>
+      <div id="boundary-kv"></div>
+    </div>
+  </div>
+
+  <!-- B. Trade Selector（单行紧凑） -->
+  <div class="controls">
+    <div class="field"><label>交易日期</label><input type="date" id="inp-date"></div>
+    <div class="field"><label>节点</label><select id="inp-node"></select></div>
+    <div class="field"><label>目标小时</label><select id="inp-hour"></select></div>
+    <div class="field"><label>演示案例</label><select id="inp-case"><option value="">— 自选参数 —</option></select></div>
+    <div class="field"><label>证据模式</label><select id="inp-evidence"></select></div>
+    <button class="btn" id="btn-run">生成交易建议</button>
+  </div>
+
+  <div id="error-box"></div>
+
+  <!-- C~I 主区（由 mvp_core.js 渲染） + J. 右侧 Trading Agent -->
+  <div class="layout">
+    <main id="main-col"></main>
+    <aside class="agent-panel">
+      <div class="agent-chat">
+        <div class="agent-head">
+          <h2>问交易 Agent <span class="agent-chip" id="agent-chip">先运行一笔决策</span></h2>
+          <div class="agent-actions">
+            <button class="btn secondary small" id="btn-new-session">新会话</button>
+            <button class="btn secondary small" id="btn-history">历史会话</button>
+            <button class="btn secondary small" id="btn-stop" style="display:none">停止</button>
+          </div>
+        </div>
+        <div id="history-drawer" style="display:none"></div>
+        <div class="agent-sub">询问这笔交易为什么做、风险是什么、用了哪些数据，以及历史上发生过什么。</div>
+        <div class="agent-quick" id="quick-q"></div>
+        <div class="agent-messages" id="agent-messages"></div>
+        <div class="jump" id="jump-down" style="display:none">↓ 查看最新消息</div>
+        <div class="agent-input">
+          <input type="text" id="inp-question" placeholder="问这笔交易…（Enter 发送，Shift+Enter 换行）">
+          <button class="btn secondary small" id="btn-ask">发送</button>
+        </div>
+        <div class="agent-note">Agent 只解释系统结果，不改变任何数字与最终建议；不展示模型私有思考过程。</div>
+      </div>
+      <details class="detail" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 16px">
+        <summary>更多功能（Daily Brief）</summary>
+        <div style="margin-top:8px;font-size:12.5px">
+          <div style="display:flex;gap:6px">
+            <input type="date" id="inp-brief-date" style="flex:1;border:1px solid var(--border);border-radius:8px;padding:6px 8px">
+            <button class="btn secondary small" onclick="MVP.generateBrief && MVP.generateBrief()">生成日报</button>
+          </div>
+          <div id="brief-out" style="margin-top:8px"></div>
+        </div>
+      </details>
+    </aside>
+  </div>
+
+</div>
+<script src="{{ url_for('static', filename='mvp_core.js') }}"></script>
+<script src="{{ url_for('static', filename='mvp_agent.js') }}"></script>
+<script src="{{ url_for('static', filename='mvp_evidence.js') }}"></script>
+</body>
+</html>

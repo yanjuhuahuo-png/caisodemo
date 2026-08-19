@@ -1,0 +1,12 @@
+code/data/*
+code/models/*
+__pycache__/
+*.pyc
+~$*
+code/tmp/*
+code/backtest_outputs/*.png
+code/backtest_outputs/*_selftest.csv
+catboost_info/
+.env
+# Agent 会话运行时存储（V0.4.1）
+data/agent_sessions/
