@@ -1028,7 +1028,7 @@ class DecisionService:
             )
             risk_fields: Dict[str, Any] = {}
             if rr is not None:
-                for k in ("hist_n", "cvar99", "rcvar99", "vol_ratio", "node_drift"):
+                for k in ("hist_n", "hist_std", "cvar99", "rcvar99", "vol_ratio", "node_drift"):
                     risk_fields[k] = _f2(rr[k])
             verdict, decision = self._run_gate_and_rule(
                 model_out, risk_fields, ev_ctx, tail_loss, cutoff_utc,
@@ -1223,6 +1223,7 @@ class DecisionService:
             "uncertainty": pred["uncertainty"],
             "direction": pred["direction"],
             "hist_n": risk_fields.get("hist_n"),
+            "hist_std": risk_fields.get("hist_std"),
             "cvar99": risk_fields.get("cvar99"),
             "rcvar99": risk_fields.get("rcvar99"),
             "vol_ratio": risk_fields.get("vol_ratio"),

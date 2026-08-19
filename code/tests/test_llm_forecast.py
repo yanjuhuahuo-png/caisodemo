@@ -87,6 +87,22 @@ class LLMForecastTests(unittest.TestCase):
         self.assertIn("历史日期", hw)
         self.assertNotIn("实际价格不存在", hw)
 
+    # ============================================================= F10
+    def test_f10_recent_window_excludes_decision_day(self):
+        """近期 7 日窗口 = target-8 .. target-2（V0.4.6）：预测 31 日用 23~29 日，
+        不含决策日（30 日）——决策日 RTPD 在 10:00 截止时未结算完整。"""
+        p = build_forecast_package("2026-07-31", NODE)
+        dates = [d["date"] for d in p["recent_prices"]]
+        self.assertEqual(dates[0], "2026-07-23", f"窗口起点应为 07-23，实际 {dates}")
+        self.assertEqual(dates[-1], "2026-07-29", f"窗口终点应为 07-29（决策日前一日），实际 {dates}")
+        self.assertEqual(len(dates), 7)
+        self.assertNotIn("2026-07-30", dates, "决策日不得进入近期窗口")
+        self.assertNotIn("2026-07-31", dates)
+        # 同小时历史分布仍基于截至决策日的完整历史（其他依赖不变）
+        p2 = build_forecast_package("2026-07-31", NODE)
+        self.assertTrue(p2["same_hour_spread_stats"])
+        self.assertGreaterEqual(p2["same_hour_spread_stats"][0]["n"], 900)
+
     # ============================================================= F2
     def test_f2_degraded_naive_fallback(self):
         r = forecast_day(T6, NODE, env={})

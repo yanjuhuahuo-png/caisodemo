@@ -1,0 +1,50 @@
+{
+ "jun": {
+  "nodes": {
+   "CONTROLX": {
+    "actual": 0.0,
+    "pred": 0.0,
+    "trade_days": 0,
+    "win_days": 0
+   },
+   "SNLNDRO": {
+    "actual": -448.79,
+    "pred": 502.32,
+    "trade_days": 5,
+    "win_days": 1
+   },
+   "ELCAJNGT_7_N001": {
+    "actual": -1537.57,
+    "pred": 576.0,
+    "trade_days": 3,
+    "win_days": 1
+   }
+  },
+  "total_actual": -1986.36,
+  "total_pred": 1078.32
+ },
+ "jul": {
+  "nodes": {
+   "CONTROLX": {
+    "actual": 0.0,
+    "pred": 0.0,
+    "trade_days": 0,
+    "win_days": 0
+   },
+   "SNLNDRO": {
+    "actual": 757.2,
+    "pred": 1046.4,
+    "trade_days": 9,
+    "win_days": 6
+   },
+   "ELCAJNGT_7_N001": {
+    "actual": 991.32,
+    "pred": 2784.0,
+    "trade_days": 8,
+    "win_days": 5
+   }
+  },
+  "total_actual": 1748.53,
+  "total_pred": 3830.4
+ }
+}

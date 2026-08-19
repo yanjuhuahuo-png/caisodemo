@@ -172,7 +172,7 @@ def evaluate_frame(df, gate: Optional[RiskGate] = None, verbose: bool = False):
     """对预测 DataFrame 逐行应用 Risk Gate，返回带 verdict 列的副本。
 
     输入列要求：node, target_date, hour, expected_return, confidence, uncertainty；
-    可选风险特征列（如存在则使用）：hist_n, cvar99, rcvar99, vol_ratio, node_drift。
+    可选风险特征列（如存在则使用）：hist_n, hist_std, cvar99, rcvar99, vol_ratio, node_drift。
     direction 缺省由 expected_return 符号推导。
     """
     import pandas as pd

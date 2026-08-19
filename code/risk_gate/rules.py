@@ -244,6 +244,30 @@ def rule_high_volatility(candidate: Dict, cfg: RiskGateConfig) -> Optional[RuleH
     return None
 
 
+def rule_high_abs_volatility(candidate: Dict, cfg: RiskGateConfig) -> Optional[RuleHit]:
+    """R13 绝对高波动：同 node×hour 历史价差 std 过高 → REJECT（V0.4.6）。
+
+    相对波动 vol_ratio 无判别力（R3 仅警告）；但绝对波动 hist_std 能干净区分
+    可交易/不可交易节点（CONTROLX≈168 vs SNLNDRO≈21 $/MWh）。绝对波动过高时
+    价差方向统计上不可预测，模型 q50 在此类节点系统性高估 → 一票否决（不交易）。
+    """
+    if not cfg.high_abs_vol_enabled:
+        return None
+    std = _f(candidate.get("hist_std"))
+    if std is not None and std > cfg.high_abs_vol_reject_threshold:
+        return RuleHit(
+            rule_id="R13",
+            reason_code="HIGH_ABS_VOLATILITY",
+            level=LEVEL_REJECT,
+            message=(
+                f"同 node×hour 历史价差波动 hist_std={std:.0f} > "
+                f"{cfg.high_abs_vol_reject_threshold:.0f} $/MWh，方向统计上不可预测，拒绝交易"
+            ),
+            threshold=f"hist_std > {cfg.high_abs_vol_reject_threshold:.0f}",
+        )
+    return None
+
+
 # ---------------------------------------------------------------------------
 # R07 模型不稳定（MODEL_UNSTABLE → WARNING，默认仅警告）
 # ---------------------------------------------------------------------------
@@ -415,6 +439,7 @@ RULES: List[Dict] = [
     {"rule_id": "R12", "reason_code": "EXTREME_STATE_EVIDENCE",    "fn": rule_extreme_state_evidence},
     {"rule_id": "R5",  "reason_code": "EXTREME_TAIL_NODE",         "fn": rule_extreme_tail},
     {"rule_id": "R3",  "reason_code": "HIGH_VOLATILITY",           "fn": rule_high_volatility},
+    {"rule_id": "R13", "reason_code": "HIGH_ABS_VOLATILITY",       "fn": rule_high_abs_volatility},
     {"rule_id": "R9",  "reason_code": "MODEL_UNSTABLE",            "fn": rule_model_unstable},
     {"rule_id": "R8",  "reason_code": "SIMILAR_TAIL_LOSS_CASE",    "fn": rule_similar_tail_loss_case},
     {"rule_id": "R1",  "reason_code": "LOW_CONFIDENCE",            "fn": rule_low_confidence},
@@ -437,6 +462,6 @@ def describe_rules() -> List[Dict]:
 
 
 def _rule_default_level(rule_id: str) -> str:
-    if rule_id in ("R01", "R7a", "R7b", "R6", "R12"):
+    if rule_id in ("R01", "R7a", "R7b", "R6", "R12", "R13"):
         return LEVEL_REJECT
     return LEVEL_WARNING

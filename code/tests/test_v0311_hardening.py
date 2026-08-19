@@ -61,7 +61,7 @@ from data_mode import (  # noqa: E402
 
 #: Golden Cases（与 docs/mvp_demo_cases.md / build_demo_artifacts.py / check_demo_consistency.py 一致）
 GOLDEN_CASES = [
-    {"id": "B",  "decision_date": "2026-07-16", "node": "CONTROLX_1_N001", "hour": 3, "final": "SELL_DA",  "gate": "PASS"},
+    {"id": "B",  "decision_date": "2026-07-16", "node": "CONTROLX_1_N001", "hour": 3, "final": "NO_TRADE",  "gate": "REJECT"},
     {"id": "C1", "decision_date": "2026-07-08", "node": "CONTROLX_1_N001", "hour": 2, "final": "NO_TRADE", "gate": "REJECT"},
     {"id": "C2", "decision_date": "2026-07-10", "node": "SNLNDRO_1_N001",  "hour": 10, "final": "NO_TRADE", "gate": "WARNING"},
     {"id": "D",  "decision_date": "2026-07-20", "node": "SNLNDRO_1_N001",  "hour": 20, "final": "SELL_DA",  "gate": "WARNING"},
@@ -402,11 +402,12 @@ class V0311HardeningTests(unittest.TestCase):
     # ============================================================= H11
     def test_h11_rule_engine_receives_evidence(self):
         """Rule Engine 收到 Evidence：evidence_used 反映 eligible 证据的方向上下文。"""
-        # 用 Golden B（SELL_DA，gate PASS）注入 SUPPORT_POSITIVE 证据：与方向一致不触发冲突
+        # 用 Golden D（SNLNDRO 07-20 H20，SELL_DA，可交易节点）注入 SUPPORT_POSITIVE 证据：
+        # 与方向一致不触发冲突。注：V0.4.6 起 CONTROLX 被 R13 高波动拒绝，改用 SNLNDRO。
         evs = [_mk_ev("EV-SUPPORT", PRE_CUTOFF, available_at=PRE_CUTOFF,
                       directional_effect="SUPPORT_POSITIVE", severity="INFO")]
         svc = make_svc(evidence=StaticEvidenceAdapter(evs))
-        dd_b, node_b, hour_b = "2026-07-16", "CONTROLX_1_N001", 3
+        dd_b, node_b, hour_b = "2026-07-20", "SNLNDRO_1_N001", 20
         dec = svc.run_decision(dd_b, node_b, hour_b)
         # 证据确实进入 eligible（Time Gate 放行）
         elig_ids = {r["evidence_id"] for r in dec["evidence"]["eligible"]}

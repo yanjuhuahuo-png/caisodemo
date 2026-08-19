@@ -119,6 +119,16 @@ class RiskGateConfig:
     #   source: V0.1 R3 分层——vol_ratio 无单调性（>3.0 段 mean +10.49），
     #           明确不能作为 REJECT；仅保留 WARNING 供审计。
 
+    # ---- R13 绝对高波动（HIGH_ABS_VOLATILITY → REJECT，V0.4.6）----
+    # 相对波动 vol_ratio 无判别力（R3 仅警告），但**绝对波动** hist_std 能干净区分
+    # 节点：CONTROLX≈168 $/MWh（方向统计上不可预测，历史实测 SELL 大亏 −832）
+    #       vs SNLNDRO≈21（可交易）。绝对波动过高 → 方向不可预测 → 一票否决。
+    high_abs_vol_enabled: bool = True
+    high_abs_vol_reject_threshold: float = 100.0   # 同 node×hour 历史价差 std（$/MWh）
+    #   source: 2026-07~08-05 复盘——CONTROLX 12 个交易日仅 4 天命中（命中率 33%），
+    #           预测累计 +8799 vs 实际 −832（模型 q50 在肥尾节点系统性高估方向）；
+    #           与 LLM 预测层"波动级别高 → 默认不交易"的纪律一致。
+
     # ---- MODEL_UNSTABLE（v2 uncertainty → WARNING，默认不拦）----
     model_unstable_enabled: bool = True
     model_unstable_uncertainty_cap: float = 0.95

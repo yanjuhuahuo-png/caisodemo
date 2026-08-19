@@ -96,11 +96,14 @@ def build_forecast_package(target_date: str, node: str) -> Dict[str, Any]:
     node_m = master[master["node"] == node].copy()
     node_m["date"] = pd.to_datetime(node_m["date"]).dt.date
 
-    # ---- 1) 近期价格（≤ decision_date 的整日，最后 7 个有数据日）----
-    hist = node_m[node_m["date"] <= dd]
+    # ---- 1) 近期价格（as-of 保守口径：截至 target_date-2，即决策日前一日）----
+    # 决策日 target_date-1 当天的 RTPD 要到决策日深夜才结算完整，10:00 PT 截止时
+    # 不可见；故近期窗口 = target-8 .. target-2（预测 31 日 → 用 23~29 日），
+    # 与 canonical 的 lag1（target_date-2 锚定）口径一致。
+    hist_recent = node_m[node_m["date"] <= (td - pd.Timedelta(days=2))]
     recent: List[Dict[str, Any]] = []
-    if len(hist):
-        daily = (hist.groupby("date", as_index=False)
+    if len(hist_recent):
+        daily = (hist_recent.groupby("date", as_index=False)
                  .agg(da=("da_price", "mean"), rt=("rtpd_price", "mean"),
                       spread=("spread", "mean")))
         daily = daily.sort_values("date").tail(7)
@@ -114,6 +117,8 @@ def build_forecast_package(target_date: str, node: str) -> Dict[str, Any]:
     sp_hist = np.array([r["spread_avg"] for r in recent if r["spread_avg"] is not None], dtype=float)
 
     # ---- 2) 同 node×hour 历史价差分布（全历史，as-of 语义 = 决策时可见）----
+    # 该分布用"截至决策日"的完整历史（其他预测依赖不变），不受近期窗口调整影响。
+    hist = node_m[node_m["date"] <= dd]
     hour_stats: List[Dict[str, Any]] = []
     for h in range(1, 25):
         sub = hist[hist["hour"] == h]["spread"].dropna().values

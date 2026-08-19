@@ -73,7 +73,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 import pandas as pd  # noqa: E402
-from flask import Flask, Response, abort, jsonify, render_template, request  # noqa: E402
+from flask import Flask, Response, abort, jsonify, render_template, request, send_from_directory  # noqa: E402
 
 from code.decision_service import (  # noqa: E402
     ALPHA_LABEL,
@@ -157,7 +157,9 @@ except Exception:  # pragma: no cover
 # 黄金案例（docs/mvp_demo_cases.md；全为真实 test 窗口数据）
 # ---------------------------------------------------------------------------
 GOLDEN_CASES: List[Dict[str, Any]] = [
-    {"id": "B",  "label": "案例 A｜正常交易（SELL）",         "decision_date": "2026-07-16", "node": "CONTROLX_1_N001", "hour": 3},
+    # V0.4.6：CONTROLX 因 R13 HIGH_ABS_VOLATILITY（hist_std≈165>100）整体不交易，
+    # "正常交易 SELL"案例改指 SNLNDRO（可交易节点）。
+    {"id": "B",  "label": "案例 A｜正常交易（SELL·SNLNDRO）",  "decision_date": "2026-07-20", "node": "SNLNDRO_1_N001", "hour": 20},
     {"id": "C1", "label": "案例 B｜Risk Gate 拦截",          "decision_date": "2026-07-08", "node": "CONTROLX_1_N001", "hour": 2},
     {"id": "C2", "label": "案例 C｜信号不足不交易",          "decision_date": "2026-07-10", "node": "SNLNDRO_1_N001",  "hour": 10},
     {"id": "D",  "label": "案例 D｜模型判断错误",            "decision_date": "2026-07-20", "node": "SNLNDRO_1_N001",  "hour": 20},
@@ -1183,6 +1185,93 @@ def api_forecast_day():
 def forecast_page():
     """未来交易日预测页（LLM 推理预测，V0.4.3）。"""
     return render_template("forecast.html")
+
+
+# ---------------------------------------------------------------------------
+# 盈亏曲线（V0.4.6：三节点 实际 vs 预测 累计盈亏，plotly HTML）
+# ---------------------------------------------------------------------------
+_PNL_CHART_DIR = REPO_ROOT / "code" / "analysis" / "pnl_charts"
+_PNL_NODE_FILES = {
+    "CONTROLX_1_N001": "CONTROLX_1_N001_pnl_curve.html",
+    "SNLNDRO_1_N001": "SNLNDRO_1_N001_pnl_curve.html",
+    "ELCAJNGT_7_N001": "ELCAJNGT_7_N001_pnl_curve.html",
+    "all": "all_nodes_pnl.html",
+}
+
+
+@app.get("/api/pnl")
+def api_pnl():
+    """三节点 实际 vs 预测 盈亏汇总（code/analysis/pnl_summary.json）。"""
+    p = REPO_ROOT / "code" / "analysis" / "pnl_summary.json"
+    if not p.exists():
+        return _error("MISSING_ARTIFACT",
+                      "pnl_summary.json 不存在：请先运行 python code/analysis/pnl_curves.py",
+                      "运行生成脚本后刷新页面。", 404)
+    try:
+        with open(p, encoding="utf-8") as f:
+            summary = json.load(f)
+    except Exception as exc:  # noqa: BLE001
+        _log_exception("读取 pnl_summary.json 失败")
+        return _error("MISSING_ARTIFACT", f"pnl_summary.json 读取失败: {exc}",
+                      "重新运行生成脚本。", 500, detail=_safe_detail(exc))
+    return jsonify({
+        "status": "ok",
+        "summary": summary,
+        "window": "2026-07-01 ~ 08-05",
+        "note": "实际盈亏按系统完整决策链（模型→风控→规则引擎→PnL），1 MWh/仓",
+    })
+
+
+@app.get("/pnl/curve/<node>")
+def pnl_curve(node: str):
+    """盈亏曲线图（plotly 自包含 HTML；node 白名单防路径穿越）。"""
+    fname = _PNL_NODE_FILES.get(node)
+    if fname is None:
+        abort(404)
+    return send_from_directory(_PNL_CHART_DIR, fname)
+
+
+# ---------------------------------------------------------------------------
+# 滚动重预测对比图（V0.4.7：实际价格 vs 滚动预测价格，6月/7月；只读分析产物）
+# ---------------------------------------------------------------------------
+_PNL_ROLLING_DIR = REPO_ROOT / "code" / "analysis" / "pnl_charts_rolling"
+_PNL_ROLLING_NODES = ("CONTROLX_1_N001", "SNLNDRO_1_N001", "ELCAJNGT_7_N001")
+
+
+@app.get("/pnl-rolling/<win>/<node>/<chart>")
+def pnl_rolling(win: str, node: str, chart: str):
+    """滚动重预测对比图：<win>=jun|jul, <chart>=price|spread（白名单防路径穿越）。"""
+    if win not in ("jun", "jul"):
+        abort(404)
+    if node not in _PNL_ROLLING_NODES:
+        abort(404)
+    if chart not in ("price", "spread"):
+        abort(404)
+    fname = f"{node}_{win}_{chart}.html"
+    return send_from_directory(_PNL_ROLLING_DIR, fname)
+
+
+@app.get("/api/pnl-rolling")
+def api_pnl_rolling():
+    """滚动重预测总盈亏（6月/7月 实际 vs 预测；来自 totals_rolling.json）。"""
+    p = _PNL_ROLLING_DIR / "totals_rolling.json"
+    if not p.exists():
+        return _error("MISSING_ARTIFACT",
+                      "totals_rolling.json 不存在：请先运行滚动重预测分析。",
+                      "重新生成后刷新页面。", 404)
+    try:
+        with open(p, encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception as exc:  # noqa: BLE001
+        _log_exception("读取 totals_rolling.json 失败")
+        return _error("MISSING_ARTIFACT", f"读取失败: {exc}", "重新生成。", 500,
+                      detail=_safe_detail(exc))
+    return jsonify({
+        "status": "ok",
+        "jun": data.get("jun", {}),
+        "jul": data.get("jul", {}),
+        "note": "滚动重预测（LLM 逐日按最新已实现价格重预测）口径：实际总盈亏 = 决策方向 × 实际价差，1 MWh/仓；预测总盈亏 = 期望值（|预测价差|×24）。",
+    })
 
 
 def _deterministic_verify_reasons_web(res: Dict[str, Any]) -> List[str]:

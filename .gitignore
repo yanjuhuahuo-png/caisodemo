@@ -13,3 +13,11 @@ catboost_info/
 .env
 # Agent 会话运行时存储（V0.4.1）
 data/agent_sessions/
+# V0.4.7: 生成的图表 HTML 不入库（plotly 自包含大文件；由 code/analysis/*.py 本地重跑生成，
+# 脚本与 JSON 汇总数据入库，克隆后运行脚本即可重新出图）
+code/analysis/pnl_charts/*.html
+code/analysis/pnl_charts_rolling/*.html
+code/analysis/pnl_charts_norisk/*.html
+code/analysis/pnl_charts_norisk_jun/*.html
+# 运行期临时错误日志
+pnl_june_table.err

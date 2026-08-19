@@ -51,7 +51,8 @@ HOUR = 2
 CUTOFF = "2026-07-08T17:00:00"
 
 GOLDEN = [
-    {"id": "B",  "decision_date": "2026-07-16", "node": "CONTROLX_1_N001", "hour": 3, "final": "SELL_DA",  "er": 59.7937},
+    # V0.4.6：CONTROLX 被 R13 HIGH_ABS_VOLATILITY 拒绝 → 案例 B 由 SELL 变 NO_TRADE（模型输出不变）
+    {"id": "B",  "decision_date": "2026-07-16", "node": "CONTROLX_1_N001", "hour": 3, "final": "NO_TRADE", "er": 59.7937},
     {"id": "C1", "decision_date": "2026-07-08", "node": "CONTROLX_1_N001", "hour": 2, "final": "NO_TRADE", "er": -76.1581},
     {"id": "C2", "decision_date": "2026-07-10", "node": "SNLNDRO_1_N001",  "hour": 10, "final": "NO_TRADE", "er": None},
     {"id": "D",  "decision_date": "2026-07-20", "node": "SNLNDRO_1_N001",  "hour": 20, "final": "SELL_DA",  "er": None},
@@ -103,13 +104,13 @@ class V0320BizUITests(unittest.TestCase):
         html = _page()
         for zh in ("卖出日前", "买入日前", "不交易", "预计 DA − RT", "风险检查", "模型信号", "截止前可用证据"):
             self.assertIn(zh, html, f"Hero 缺少中文标签 {zh}")
-        # Case B → SELL_DA，数字一致
+        # Case B → NO_TRADE（V0.4.6：CONTROLX 被 R13 高波动拒绝；模型输出不变）
         r = mvp_web.app.test_client().post(
             "/api/decision", json={"decision_date": "2026-07-16", "node": "CONTROLX_1_N001",
                                    "hour": 3, "evidence": "offline"})
         self.assertEqual(r.status_code, 200)
         d = r.get_json()["decision"]
-        self.assertEqual(d["final_recommendation"], "SELL_DA")
+        self.assertEqual(d["final_recommendation"], "NO_TRADE")
         self.assertAlmostEqual(d["model_output"]["expected_return"], 59.7937, places=2)
 
     def test_u2_chinese_business_labels(self):

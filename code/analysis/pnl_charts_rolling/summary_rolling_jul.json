@@ -1,0 +1,1097 @@
+{
+ "CONTROLX_1_N001": {
+  "n": 36,
+  "days": [
+   {
+    "target_date": "2026-07-01",
+    "decision": "NO_TRADE",
+    "da_pred": -150.0,
+    "rtpd_pred": -150.0,
+    "spread_pred": 0.0,
+    "da_actual": -149.93,
+    "rtpd_actual": -21.11,
+    "spread_actual": -128.82
+   },
+   {
+    "target_date": "2026-07-02",
+    "decision": "NO_TRADE",
+    "da_pred": -240.98,
+    "rtpd_pred": -371.14,
+    "spread_pred": 130.16,
+    "da_actual": -149.34,
+    "rtpd_actual": -11.54,
+    "spread_actual": -137.8
+   },
+   {
+    "target_date": "2026-07-03",
+    "decision": "NO_TRADE",
+    "da_pred": -150.0,
+    "rtpd_pred": -150.0,
+    "spread_pred": 0.0,
+    "da_actual": -137.26,
+    "rtpd_actual": -14.48,
+    "spread_actual": -122.78
+   },
+   {
+    "target_date": "2026-07-04",
+    "decision": "NO_TRADE",
+    "da_pred": -150.0,
+    "rtpd_pred": -150.0,
+    "spread_pred": 0.0,
+    "da_actual": -51.21,
+    "rtpd_actual": -49.93,
+    "spread_actual": -1.28
+   },
+   {
+    "target_date": "2026-07-05",
+    "decision": "NO_TRADE",
+    "da_pred": -150.0,
+    "rtpd_pred": -20.0,
+    "spread_pred": -130.0,
+    "da_actual": -67.36,
+    "rtpd_actual": -11.74,
+    "spread_actual": -55.61
+   },
+   {
+    "target_date": "2026-07-06",
+    "decision": "NO_TRADE",
+    "da_pred": -150.0,
+    "rtpd_pred": -20.0,
+    "spread_pred": -130.0,
+    "da_actual": -115.04,
+    "rtpd_actual": -440.03,
+    "spread_actual": 324.99
+   },
+   {
+    "target_date": "2026-07-07",
+    "decision": "NO_TRADE",
+    "da_pred": -150.0,
+    "rtpd_pred": -50.0,
+    "spread_pred": -100.0,
+    "da_actual": -148.74,
+    "rtpd_actual": -512.06,
+    "spread_actual": 363.32
+   },
+   {
+    "target_date": "2026-07-08",
+    "decision": "NO_TRADE",
+    "da_pred": -120.0,
+    "rtpd_pred": -100.0,
+    "spread_pred": -20.0,
+    "da_actual": -149.5,
+    "rtpd_actual": -469.14,
+    "spread_actual": 319.64
+   },
+   {
+    "target_date": "2026-07-09",
+    "decision": "NO_TRADE",
+    "da_pred": -120.0,
+    "rtpd_pred": -150.0,
+    "spread_pred": 30.0,
+    "da_actual": -149.71,
+    "rtpd_actual": -552.7,
+    "spread_actual": 402.99
+   },
+   {
+    "target_date": "2026-07-10",
+    "decision": "NO_TRADE",
+    "da_pred": -130.0,
+    "rtpd_pred": -230.0,
+    "spread_pred": 100.0,
+    "da_actual": -149.99,
+    "rtpd_actual": -110.16,
+    "spread_actual": -39.83
+   },
+   {
+    "target_date": "2026-07-11",
+    "decision": "NO_TRADE",
+    "da_pred": -149.71,
+    "rtpd_pred": -552.7,
+    "spread_pred": 402.99,
+    "da_actual": -79.14,
+    "rtpd_actual": -57.72,
+    "spread_actual": -21.42
+   },
+   {
+    "target_date": "2026-07-12",
+    "decision": "NO_TRADE",
+    "da_pred": -130.0,
+    "rtpd_pred": -130.0,
+    "spread_pred": 0.0,
+    "da_actual": -138.18,
+    "rtpd_actual": 5.53,
+    "spread_actual": -143.72
+   },
+   {
+    "target_date": "2026-07-13",
+    "decision": "NO_TRADE",
+    "da_pred": -122.78,
+    "rtpd_pred": -307.65,
+    "spread_pred": 184.87,
+    "da_actual": -93.16,
+    "rtpd_actual": 31.3,
+    "spread_actual": -124.46
+   },
+   {
+    "target_date": "2026-07-14",
+    "decision": "NO_TRADE",
+    "da_pred": -135.0,
+    "rtpd_pred": -140.0,
+    "spread_pred": 5.0,
+    "da_actual": -48.35,
+    "rtpd_actual": 4.98,
+    "spread_actual": -53.34
+   },
+   {
+    "target_date": "2026-07-15",
+    "decision": "NO_TRADE",
+    "da_pred": -120.0,
+    "rtpd_pred": -150.0,
+    "spread_pred": 30.0,
+    "da_actual": -38.82,
+    "rtpd_actual": 2.47,
+    "spread_actual": -41.29
+   },
+   {
+    "target_date": "2026-07-16",
+    "decision": "NO_TRADE",
+    "da_pred": -115.43,
+    "rtpd_pred": -163.99,
+    "spread_pred": 48.55,
+    "da_actual": -48.42,
+    "rtpd_actual": -46.5,
+    "spread_actual": -1.92
+   },
+   {
+    "target_date": "2026-07-17",
+    "decision": "NO_TRADE",
+    "da_pred": -99.62,
+    "rtpd_pred": -96.61,
+    "spread_pred": -3.01,
+    "da_actual": -71.02,
+    "rtpd_actual": -68.14,
+    "spread_actual": -2.89
+   },
+   {
+    "target_date": "2026-07-18",
+    "decision": "NO_TRADE",
+    "da_pred": -60.0,
+    "rtpd_pred": -30.0,
+    "spread_pred": -30.0,
+    "da_actual": -75.0,
+    "rtpd_actual": 19.02,
+    "spread_actual": -94.02
+   },
+   {
+    "target_date": "2026-07-19",
+    "decision": "NO_TRADE",
+    "da_pred": -55.0,
+    "rtpd_pred": -30.0,
+    "spread_pred": -25.0,
+    "da_actual": -22.13,
+    "rtpd_actual": 32.27,
+    "spread_actual": -54.4
+   },
+   {
+    "target_date": "2026-07-20",
+    "decision": "NO_TRADE",
+    "da_pred": -70.0,
+    "rtpd_pred": -10.0,
+    "spread_pred": -60.0,
+    "da_actual": -40.22,
+    "rtpd_actual": 47.5,
+    "spread_actual": -87.72
+   },
+   {
+    "target_date": "2026-07-21",
+    "decision": "NO_TRADE",
+    "da_pred": -50.0,
+    "rtpd_pred": -10.0,
+    "spread_pred": -40.0,
+    "da_actual": -29.06,
+    "rtpd_actual": 19.19,
+    "spread_actual": -48.25
+   },
+   {
+    "target_date": "2026-07-22",
+    "decision": "NO_TRADE",
+    "da_pred": -45.0,
+    "rtpd_pred": -2.0,
+    "spread_pred": -43.0,
+    "da_actual": -19.14,
+    "rtpd_actual": 20.21,
+    "spread_actual": -39.35
+   },
+   {
+    "target_date": "2026-07-23",
+    "decision": "NO_TRADE",
+    "da_pred": -46.38,
+    "rtpd_pred": 0.83,
+    "spread_pred": -47.21,
+    "da_actual": -5.79,
+    "rtpd_actual": -15.56,
+    "spread_actual": 9.77
+   },
+   {
+    "target_date": "2026-07-24",
+    "decision": "NO_TRADE",
+    "da_pred": -30.0,
+    "rtpd_pred": 10.0,
+    "spread_pred": -40.0,
+    "da_actual": -43.71,
+    "rtpd_actual": 41.05,
+    "spread_actual": -84.76
+   },
+   {
+    "target_date": "2026-07-25",
+    "decision": "NO_TRADE",
+    "da_pred": -20.0,
+    "rtpd_pred": -10.0,
+    "spread_pred": -10.0,
+    "da_actual": -6.33,
+    "rtpd_actual": 26.23,
+    "spread_actual": -32.56
+   },
+   {
+    "target_date": "2026-07-26",
+    "decision": "NO_TRADE",
+    "da_pred": -33.58,
+    "rtpd_pred": 23.38,
+    "spread_pred": -56.96,
+    "da_actual": -8.23,
+    "rtpd_actual": 32.08,
+    "spread_actual": -40.31
+   },
+   {
+    "target_date": "2026-07-27",
+    "decision": "NO_TRADE",
+    "da_pred": -25.0,
+    "rtpd_pred": 20.0,
+    "spread_pred": -45.0,
+    "da_actual": 8.55,
+    "rtpd_actual": 34.78,
+    "spread_actual": -26.23
+   },
+   {
+    "target_date": "2026-07-28",
+    "decision": "NO_TRADE",
+    "da_pred": -20.0,
+    "rtpd_pred": 20.0,
+    "spread_pred": -40.0,
+    "da_actual": -6.49,
+    "rtpd_actual": -34.83,
+    "spread_actual": 28.34
+   },
+   {
+    "target_date": "2026-07-29",
+    "decision": "NO_TRADE",
+    "da_pred": -14.82,
+    "rtpd_pred": 22.57,
+    "spread_pred": -37.38,
+    "da_actual": 41.69,
+    "rtpd_actual": -357.34,
+    "spread_actual": 399.03
+   },
+   {
+    "target_date": "2026-07-30",
+    "decision": "NO_TRADE",
+    "da_pred": -8.0,
+    "rtpd_pred": 18.0,
+    "spread_pred": -26.0,
+    "da_actual": -128.47,
+    "rtpd_actual": -24.24,
+    "spread_actual": -104.23
+   },
+   {
+    "target_date": "2026-07-31",
+    "decision": "NO_TRADE",
+    "da_pred": -2.9,
+    "rtpd_pred": -39.08,
+    "spread_pred": 36.18,
+    "da_actual": -38.68,
+    "rtpd_actual": -49.05,
+    "spread_actual": 10.37
+   },
+   {
+    "target_date": "2026-08-01",
+    "decision": "NO_TRADE",
+    "da_pred": -20.43,
+    "rtpd_pred": -40.32,
+    "spread_pred": 19.9,
+    "da_actual": -27.71,
+    "rtpd_actual": -11.87,
+    "spread_actual": -15.84
+   },
+   {
+    "target_date": "2026-08-02",
+    "decision": "NO_TRADE",
+    "da_pred": -20.0,
+    "rtpd_pred": -53.0,
+    "spread_pred": 33.0,
+    "da_actual": -32.77,
+    "rtpd_actual": 2.21,
+    "spread_actual": -34.98
+   },
+   {
+    "target_date": "2026-08-03",
+    "decision": "NO_TRADE",
+    "da_pred": -22.76,
+    "rtpd_pred": -58.64,
+    "spread_pred": 35.88,
+    "da_actual": -32.31,
+    "rtpd_actual": -9.19,
+    "spread_actual": -23.11
+   },
+   {
+    "target_date": "2026-08-04",
+    "decision": "NO_TRADE",
+    "da_pred": -26.27,
+    "rtpd_pred": -62.91,
+    "spread_pred": 36.64,
+    "da_actual": -93.04,
+    "rtpd_actual": -168.31,
+    "spread_actual": 75.27
+   },
+   {
+    "target_date": "2026-08-05",
+    "decision": "NO_TRADE",
+    "da_pred": -32.11,
+    "rtpd_pred": -69.19,
+    "spread_pred": 37.08,
+    "da_actual": -149.83,
+    "rtpd_actual": -90.55,
+    "spread_actual": -59.28
+   }
+  ]
+ },
+ "SNLNDRO_1_N001": {
+  "n": 36,
+  "days": [
+   {
+    "target_date": "2026-07-01",
+    "decision": "NO_TRADE",
+    "da_pred": 22.57,
+    "rtpd_pred": 20.61,
+    "spread_pred": 1.96,
+    "da_actual": 16.2,
+    "rtpd_actual": 15.96,
+    "spread_actual": 0.24
+   },
+   {
+    "target_date": "2026-07-02",
+    "decision": "NO_TRADE",
+    "da_pred": 20.5,
+    "rtpd_pred": 19.2,
+    "spread_pred": 1.3,
+    "da_actual": 23.44,
+    "rtpd_actual": 20.22,
+    "spread_actual": 3.23
+   },
+   {
+    "target_date": "2026-07-03",
+    "decision": "NO_TRADE",
+    "da_pred": 17.5,
+    "rtpd_pred": 16.03,
+    "spread_pred": 1.47,
+    "da_actual": 22.63,
+    "rtpd_actual": 17.72,
+    "spread_actual": 4.91
+   },
+   {
+    "target_date": "2026-07-04",
+    "decision": "SELL_DA",
+    "da_pred": 18.5,
+    "rtpd_pred": 16.4,
+    "spread_pred": 2.1,
+    "da_actual": 25.93,
+    "rtpd_actual": 20.92,
+    "spread_actual": 5.01
+   },
+   {
+    "target_date": "2026-07-05",
+    "decision": "SELL_DA",
+    "da_pred": 20.5,
+    "rtpd_pred": 17.5,
+    "spread_pred": 3.0,
+    "da_actual": 24.58,
+    "rtpd_actual": 27.25,
+    "spread_actual": -2.67
+   },
+   {
+    "target_date": "2026-07-06",
+    "decision": "SELL_DA",
+    "da_pred": 24.5,
+    "rtpd_pred": 20.5,
+    "spread_pred": 4.0,
+    "da_actual": 29.83,
+    "rtpd_actual": 32.46,
+    "spread_actual": -2.64
+   },
+   {
+    "target_date": "2026-07-07",
+    "decision": "NO_TRADE",
+    "da_pred": 22.0,
+    "rtpd_pred": 19.5,
+    "spread_pred": 2.5,
+    "da_actual": 31.67,
+    "rtpd_actual": 33.46,
+    "spread_actual": -1.79
+   },
+   {
+    "target_date": "2026-07-08",
+    "decision": "NO_TRADE",
+    "da_pred": 24.5,
+    "rtpd_pred": 23.0,
+    "spread_pred": 1.5,
+    "da_actual": 31.53,
+    "rtpd_actual": 28.74,
+    "spread_actual": 2.79
+   },
+   {
+    "target_date": "2026-07-09",
+    "decision": "NO_TRADE",
+    "da_pred": 25.5,
+    "rtpd_pred": 25.0,
+    "spread_pred": 0.5,
+    "da_actual": 34.79,
+    "rtpd_actual": 32.4,
+    "spread_actual": 2.39
+   },
+   {
+    "target_date": "2026-07-10",
+    "decision": "NO_TRADE",
+    "da_pred": 27.5,
+    "rtpd_pred": 26.2,
+    "spread_pred": 1.3,
+    "da_actual": 33.79,
+    "rtpd_actual": 36.03,
+    "spread_actual": -2.58
+   },
+   {
+    "target_date": "2026-07-11",
+    "decision": "NO_TRADE",
+    "da_pred": 30.0,
+    "rtpd_pred": 29.0,
+    "spread_pred": 1.0,
+    "da_actual": 35.68,
+    "rtpd_actual": 30.73,
+    "spread_actual": 4.95
+   },
+   {
+    "target_date": "2026-07-12",
+    "decision": "NO_TRADE",
+    "da_pred": 31.5,
+    "rtpd_pred": 31.5,
+    "spread_pred": 0.0,
+    "da_actual": 38.31,
+    "rtpd_actual": 44.13,
+    "spread_actual": -5.83
+   },
+   {
+    "target_date": "2026-07-13",
+    "decision": "NO_TRADE",
+    "da_pred": 33.5,
+    "rtpd_pred": 33.0,
+    "spread_pred": 0.5,
+    "da_actual": 49.5,
+    "rtpd_actual": 59.86,
+    "spread_actual": -10.37
+   },
+   {
+    "target_date": "2026-07-14",
+    "decision": "NO_TRADE",
+    "da_pred": 34.5,
+    "rtpd_pred": 35.2,
+    "spread_pred": -0.7,
+    "da_actual": 49.05,
+    "rtpd_actual": 47.37,
+    "spread_actual": 1.68
+   },
+   {
+    "target_date": "2026-07-15",
+    "decision": "NO_TRADE",
+    "da_pred": 36.47,
+    "rtpd_pred": 37.91,
+    "spread_pred": -1.44,
+    "da_actual": 47.6,
+    "rtpd_actual": 49.4,
+    "spread_actual": -1.8
+   },
+   {
+    "target_date": "2026-07-16",
+    "decision": "NO_TRADE",
+    "da_pred": 40.0,
+    "rtpd_pred": 41.0,
+    "spread_pred": -1.0,
+    "da_actual": 39.77,
+    "rtpd_actual": 37.84,
+    "spread_actual": 1.93
+   },
+   {
+    "target_date": "2026-07-17",
+    "decision": "NO_TRADE",
+    "da_pred": 41.25,
+    "rtpd_pred": 42.85,
+    "spread_pred": -1.65,
+    "da_actual": 39.88,
+    "rtpd_actual": 34.5,
+    "spread_actual": 5.38
+   },
+   {
+    "target_date": "2026-07-18",
+    "decision": "NO_TRADE",
+    "da_pred": 42.0,
+    "rtpd_pred": 43.7,
+    "spread_pred": -1.7,
+    "da_actual": 39.69,
+    "rtpd_actual": 70.37,
+    "spread_actual": -30.68
+   },
+   {
+    "target_date": "2026-07-19",
+    "decision": "NO_TRADE",
+    "da_pred": 42.83,
+    "rtpd_pred": 43.41,
+    "spread_pred": -0.58,
+    "da_actual": 49.1,
+    "rtpd_actual": 40.62,
+    "spread_actual": 8.48
+   },
+   {
+    "target_date": "2026-07-20",
+    "decision": "NO_TRADE",
+    "da_pred": 43.4,
+    "rtpd_pred": 49.07,
+    "spread_pred": -5.67,
+    "da_actual": 53.96,
+    "rtpd_actual": 67.49,
+    "spread_actual": -13.53
+   },
+   {
+    "target_date": "2026-07-21",
+    "decision": "NO_TRADE",
+    "da_pred": 44.94,
+    "rtpd_pred": 48.57,
+    "spread_pred": -3.63,
+    "da_actual": 63.43,
+    "rtpd_actual": 68.72,
+    "spread_actual": -5.3
+   },
+   {
+    "target_date": "2026-07-22",
+    "decision": "NO_TRADE",
+    "da_pred": 45.58,
+    "rtpd_pred": 49.66,
+    "spread_pred": -4.08,
+    "da_actual": 56.27,
+    "rtpd_actual": 53.17,
+    "spread_actual": 3.11
+   },
+   {
+    "target_date": "2026-07-23",
+    "decision": "NO_TRADE",
+    "da_pred": 50.0,
+    "rtpd_pred": 53.0,
+    "spread_pred": -3.0,
+    "da_actual": 45.33,
+    "rtpd_actual": 37.88,
+    "spread_actual": 7.45
+   },
+   {
+    "target_date": "2026-07-24",
+    "decision": "NO_TRADE",
+    "da_pred": 50.0,
+    "rtpd_pred": 52.0,
+    "spread_pred": -2.0,
+    "da_actual": 43.86,
+    "rtpd_actual": 61.61,
+    "spread_actual": -17.75
+   },
+   {
+    "target_date": "2026-07-25",
+    "decision": "NO_TRADE",
+    "da_pred": 49.67,
+    "rtpd_pred": 53.25,
+    "spread_pred": -3.58,
+    "da_actual": 43.75,
+    "rtpd_actual": 37.03,
+    "spread_actual": 6.72
+   },
+   {
+    "target_date": "2026-07-26",
+    "decision": "NO_TRADE",
+    "da_pred": 48.5,
+    "rtpd_pred": 55.4,
+    "spread_pred": -6.9,
+    "da_actual": 44.48,
+    "rtpd_actual": 37.01,
+    "spread_actual": 7.47
+   },
+   {
+    "target_date": "2026-07-27",
+    "decision": "NO_TRADE",
+    "da_pred": 50.81,
+    "rtpd_pred": 52.36,
+    "spread_pred": -1.55,
+    "da_actual": 48.28,
+    "rtpd_actual": 45.1,
+    "spread_actual": 3.19
+   },
+   {
+    "target_date": "2026-07-28",
+    "decision": "NO_TRADE",
+    "da_pred": 50.15,
+    "rtpd_pred": 51.84,
+    "spread_pred": -1.69,
+    "da_actual": 50.0,
+    "rtpd_actual": 40.41,
+    "spread_actual": 9.59
+   },
+   {
+    "target_date": "2026-07-29",
+    "decision": "NO_TRADE",
+    "da_pred": 48.0,
+    "rtpd_pred": 47.3,
+    "spread_pred": 0.7,
+    "da_actual": 52.24,
+    "rtpd_actual": 40.68,
+    "spread_actual": 11.56
+   },
+   {
+    "target_date": "2026-07-30",
+    "decision": "SELL_DA",
+    "da_pred": 49.0,
+    "rtpd_pred": 45.0,
+    "spread_pred": 4.0,
+    "da_actual": 47.87,
+    "rtpd_actual": 40.54,
+    "spread_actual": 7.34
+   },
+   {
+    "target_date": "2026-07-31",
+    "decision": "SELL_DA",
+    "da_pred": 50.0,
+    "rtpd_pred": 43.0,
+    "spread_pred": 7.0,
+    "da_actual": 50.23,
+    "rtpd_actual": 51.12,
+    "spread_actual": -0.88
+   },
+   {
+    "target_date": "2026-08-01",
+    "decision": "SELL_DA",
+    "da_pred": 48.5,
+    "rtpd_pred": 42.5,
+    "spread_pred": 6.0,
+    "da_actual": 44.27,
+    "rtpd_actual": 39.72,
+    "spread_actual": 4.56
+   },
+   {
+    "target_date": "2026-08-02",
+    "decision": "NO_TRADE",
+    "da_pred": 48.12,
+    "rtpd_pred": 41.7,
+    "spread_pred": 6.42,
+    "da_actual": 46.04,
+    "rtpd_actual": 40.75,
+    "spread_actual": 5.29
+   },
+   {
+    "target_date": "2026-08-03",
+    "decision": "SELL_DA",
+    "da_pred": 48.0,
+    "rtpd_pred": 42.0,
+    "spread_pred": 6.0,
+    "da_actual": 54.78,
+    "rtpd_actual": 51.23,
+    "spread_actual": 3.55
+   },
+   {
+    "target_date": "2026-08-04",
+    "decision": "SELL_DA",
+    "da_pred": 48.5,
+    "rtpd_pred": 43.0,
+    "spread_pred": 5.5,
+    "da_actual": 60.19,
+    "rtpd_actual": 49.98,
+    "spread_actual": 10.21
+   },
+   {
+    "target_date": "2026-08-05",
+    "decision": "SELL_DA",
+    "da_pred": 50.0,
+    "rtpd_pred": 44.0,
+    "spread_pred": 6.0,
+    "da_actual": 54.18,
+    "rtpd_actual": 47.11,
+    "spread_actual": 7.08
+   }
+  ]
+ },
+ "ELCAJNGT_7_N001": {
+  "n": 36,
+  "days": [
+   {
+    "target_date": "2026-07-01",
+    "decision": "SELL_DA",
+    "da_pred": 42.0,
+    "rtpd_pred": 33.0,
+    "spread_pred": 9.0,
+    "da_actual": 36.84,
+    "rtpd_actual": 43.05,
+    "spread_actual": -6.21
+   },
+   {
+    "target_date": "2026-07-02",
+    "decision": "SELL_DA",
+    "da_pred": 35.0,
+    "rtpd_pred": 28.0,
+    "spread_pred": 7.0,
+    "da_actual": 24.81,
+    "rtpd_actual": 27.23,
+    "spread_actual": -2.42
+   },
+   {
+    "target_date": "2026-07-03",
+    "decision": "NO_TRADE",
+    "da_pred": 34.39,
+    "rtpd_pred": 29.51,
+    "spread_pred": 4.88,
+    "da_actual": 23.59,
+    "rtpd_actual": 17.62,
+    "spread_actual": 5.97
+   },
+   {
+    "target_date": "2026-07-04",
+    "decision": "NO_TRADE",
+    "da_pred": 30.69,
+    "rtpd_pred": 27.41,
+    "spread_pred": 3.28,
+    "da_actual": 25.1,
+    "rtpd_actual": 29.49,
+    "spread_actual": -4.4
+   },
+   {
+    "target_date": "2026-07-05",
+    "decision": "NO_TRADE",
+    "da_pred": 28.0,
+    "rtpd_pred": 22.1,
+    "spread_pred": 5.9,
+    "da_actual": 25.81,
+    "rtpd_actual": 37.35,
+    "spread_actual": -11.54
+   },
+   {
+    "target_date": "2026-07-06",
+    "decision": "NO_TRADE",
+    "da_pred": 26.5,
+    "rtpd_pred": 24.5,
+    "spread_pred": 2.0,
+    "da_actual": 36.84,
+    "rtpd_actual": 59.15,
+    "spread_actual": -22.31
+   },
+   {
+    "target_date": "2026-07-07",
+    "decision": "NO_TRADE",
+    "da_pred": 27.38,
+    "rtpd_pred": 27.21,
+    "spread_pred": 0.17,
+    "da_actual": 37.14,
+    "rtpd_actual": 39.86,
+    "spread_actual": -2.72
+   },
+   {
+    "target_date": "2026-07-08",
+    "decision": "NO_TRADE",
+    "da_pred": 30.5,
+    "rtpd_pred": 35.0,
+    "spread_pred": -4.5,
+    "da_actual": 51.1,
+    "rtpd_actual": 39.01,
+    "spread_actual": 12.09
+   },
+   {
+    "target_date": "2026-07-09",
+    "decision": "NO_TRADE",
+    "da_pred": 30.02,
+    "rtpd_pred": 36.25,
+    "spread_pred": -6.23,
+    "da_actual": 44.46,
+    "rtpd_actual": 44.01,
+    "spread_actual": 0.45
+   },
+   {
+    "target_date": "2026-07-10",
+    "decision": "NO_TRADE",
+    "da_pred": 32.06,
+    "rtpd_pred": 35.68,
+    "spread_pred": -3.62,
+    "da_actual": 38.92,
+    "rtpd_actual": 38.49,
+    "spread_actual": 0.43
+   },
+   {
+    "target_date": "2026-07-11",
+    "decision": "NO_TRADE",
+    "da_pred": 36.0,
+    "rtpd_pred": 39.0,
+    "spread_pred": -3.0,
+    "da_actual": 40.41,
+    "rtpd_actual": 37.64,
+    "spread_actual": 2.78
+   },
+   {
+    "target_date": "2026-07-12",
+    "decision": "NO_TRADE",
+    "da_pred": 38.0,
+    "rtpd_pred": 40.0,
+    "spread_pred": -2.0,
+    "da_actual": 47.25,
+    "rtpd_actual": 62.2,
+    "spread_actual": -14.95
+   },
+   {
+    "target_date": "2026-07-13",
+    "decision": "NO_TRADE",
+    "da_pred": 40.0,
+    "rtpd_pred": 40.5,
+    "spread_pred": -0.5,
+    "da_actual": 68.58,
+    "rtpd_actual": 93.53,
+    "spread_actual": -24.95
+   },
+   {
+    "target_date": "2026-07-14",
+    "decision": "NO_TRADE",
+    "da_pred": 42.3,
+    "rtpd_pred": 45.77,
+    "spread_pred": -3.46,
+    "da_actual": 67.04,
+    "rtpd_actual": 95.47,
+    "spread_actual": -28.43
+   },
+   {
+    "target_date": "2026-07-15",
+    "decision": "NO_TRADE",
+    "da_pred": 46.84,
+    "rtpd_pred": 50.68,
+    "spread_pred": -3.84,
+    "da_actual": 72.2,
+    "rtpd_actual": 173.88,
+    "spread_actual": -101.68
+   },
+   {
+    "target_date": "2026-07-16",
+    "decision": "SELL_DA",
+    "da_pred": 68.0,
+    "rtpd_pred": 55.0,
+    "spread_pred": 13.0,
+    "da_actual": 77.88,
+    "rtpd_actual": 173.58,
+    "spread_actual": -95.7
+   },
+   {
+    "target_date": "2026-07-17",
+    "decision": "NO_TRADE",
+    "da_pred": 70.0,
+    "rtpd_pred": 95.0,
+    "spread_pred": -25.0,
+    "da_actual": 95.35,
+    "rtpd_actual": 130.15,
+    "spread_actual": -34.8
+   },
+   {
+    "target_date": "2026-07-18",
+    "decision": "BUY_DA",
+    "da_pred": 75.0,
+    "rtpd_pred": 120.0,
+    "spread_pred": -45.0,
+    "da_actual": 88.46,
+    "rtpd_actual": 117.64,
+    "spread_actual": -29.18
+   },
+   {
+    "target_date": "2026-07-19",
+    "decision": "NO_TRADE",
+    "da_pred": 80.0,
+    "rtpd_pred": 110.0,
+    "spread_pred": -30.0,
+    "da_actual": 75.17,
+    "rtpd_actual": 66.2,
+    "spread_actual": 8.96
+   },
+   {
+    "target_date": "2026-07-20",
+    "decision": "NO_TRADE",
+    "da_pred": 82.0,
+    "rtpd_pred": 105.0,
+    "spread_pred": -23.0,
+    "da_actual": 93.06,
+    "rtpd_actual": 102.83,
+    "spread_actual": -9.77
+   },
+   {
+    "target_date": "2026-07-21",
+    "decision": "NO_TRADE",
+    "da_pred": 78.0,
+    "rtpd_pred": 80.0,
+    "spread_pred": -2.0,
+    "da_actual": 104.99,
+    "rtpd_actual": 131.91,
+    "spread_actual": -26.92
+   },
+   {
+    "target_date": "2026-07-22",
+    "decision": "NO_TRADE",
+    "da_pred": 85.0,
+    "rtpd_pred": 95.0,
+    "spread_pred": -10.0,
+    "da_actual": 91.46,
+    "rtpd_actual": 264.69,
+    "spread_actual": -173.22
+   },
+   {
+    "target_date": "2026-07-23",
+    "decision": "NO_TRADE",
+    "da_pred": 90.0,
+    "rtpd_pred": 120.0,
+    "spread_pred": -30.0,
+    "da_actual": 118.75,
+    "rtpd_actual": 126.95,
+    "spread_actual": -8.2
+   },
+   {
+    "target_date": "2026-07-24",
+    "decision": "NO_TRADE",
+    "da_pred": 92.0,
+    "rtpd_pred": 145.0,
+    "spread_pred": -53.0,
+    "da_actual": 118.94,
+    "rtpd_actual": 156.56,
+    "spread_actual": -37.62
+   },
+   {
+    "target_date": "2026-07-25",
+    "decision": "NO_TRADE",
+    "da_pred": 95.0,
+    "rtpd_pred": 105.0,
+    "spread_pred": -10.0,
+    "da_actual": 103.05,
+    "rtpd_actual": 60.78,
+    "spread_actual": 42.26
+   },
+   {
+    "target_date": "2026-07-26",
+    "decision": "NO_TRADE",
+    "da_pred": 100.0,
+    "rtpd_pred": 110.0,
+    "spread_pred": -10.0,
+    "da_actual": 82.75,
+    "rtpd_actual": 54.58,
+    "spread_actual": 28.16
+   },
+   {
+    "target_date": "2026-07-27",
+    "decision": "NO_TRADE",
+    "da_pred": 103.0,
+    "rtpd_pred": 110.0,
+    "spread_pred": -7.0,
+    "da_actual": 94.02,
+    "rtpd_actual": 90.28,
+    "spread_actual": 3.74
+   },
+   {
+    "target_date": "2026-07-28",
+    "decision": "NO_TRADE",
+    "da_pred": 101.86,
+    "rtpd_pred": 128.33,
+    "spread_pred": -26.47,
+    "da_actual": 84.61,
+    "rtpd_actual": 63.19,
+    "spread_actual": 21.42
+   },
+   {
+    "target_date": "2026-07-29",
+    "decision": "NO_TRADE",
+    "da_pred": 101.99,
+    "rtpd_pred": 126.54,
+    "spread_pred": -24.54,
+    "da_actual": 58.41,
+    "rtpd_actual": 94.5,
+    "spread_actual": -36.1
+   },
+   {
+    "target_date": "2026-07-30",
+    "decision": "NO_TRADE",
+    "da_pred": 99.08,
+    "rtpd_pred": 116.72,
+    "spread_pred": -17.64,
+    "da_actual": 90.19,
+    "rtpd_actual": 91.45,
+    "spread_actual": -1.27
+   },
+   {
+    "target_date": "2026-07-31",
+    "decision": "NO_TRADE",
+    "da_pred": 94.36,
+    "rtpd_pred": 92.41,
+    "spread_pred": 1.95,
+    "da_actual": 102.4,
+    "rtpd_actual": 76.71,
+    "spread_actual": 25.69
+   },
+   {
+    "target_date": "2026-08-01",
+    "decision": "NO_TRADE",
+    "da_pred": 90.28,
+    "rtpd_pred": 87.33,
+    "spread_pred": 2.94,
+    "da_actual": 89.02,
+    "rtpd_actual": 76.2,
+    "spread_actual": 12.82
+   },
+   {
+    "target_date": "2026-08-02",
+    "decision": "SELL_DA",
+    "da_pred": 92.0,
+    "rtpd_pred": 78.0,
+    "spread_pred": 14.0,
+    "da_actual": 83.4,
+    "rtpd_actual": 60.96,
+    "spread_actual": 22.44
+   },
+   {
+    "target_date": "2026-08-03",
+    "decision": "SELL_DA",
+    "da_pred": 88.0,
+    "rtpd_pred": 78.0,
+    "spread_pred": 10.0,
+    "da_actual": 91.53,
+    "rtpd_actual": 74.9,
+    "spread_actual": 16.63
+   },
+   {
+    "target_date": "2026-08-04",
+    "decision": "SELL_DA",
+    "da_pred": 88.0,
+    "rtpd_pred": 80.0,
+    "spread_pred": 8.0,
+    "da_actual": 106.76,
+    "rtpd_actual": 65.47,
+    "spread_actual": 41.29
+   },
+   {
+    "target_date": "2026-08-05",
+    "decision": "SELL_DA",
+    "da_pred": 88.0,
+    "rtpd_pred": 78.0,
+    "spread_pred": 10.0,
+    "da_actual": 89.04,
+    "rtpd_actual": 52.94,
+    "spread_actual": 36.1
+   }
+  ]
+ }
+}

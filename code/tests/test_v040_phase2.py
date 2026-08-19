@@ -60,7 +60,8 @@ NODE = "CONTROLX_1_N001"
 HOUR = 2
 
 GOLDEN = [
-    {"id": "B",  "decision_date": "2026-07-16", "node": "CONTROLX_1_N001", "hour": 3, "final": "SELL_DA",  "er": 59.7937},
+    # V0.4.6：CONTROLX 被 R13 HIGH_ABS_VOLATILITY 拒绝 → 案例 B 由 SELL 变 NO_TRADE（模型输出不变）
+    {"id": "B",  "decision_date": "2026-07-16", "node": "CONTROLX_1_N001", "hour": 3, "final": "NO_TRADE", "er": 59.7937},
     {"id": "C1", "decision_date": "2026-07-08", "node": "CONTROLX_1_N001", "hour": 2, "final": "NO_TRADE", "er": -76.1581},
     {"id": "C2", "decision_date": "2026-07-10", "node": "SNLNDRO_1_N001",  "hour": 10, "final": "NO_TRADE", "er": None},
     {"id": "D",  "decision_date": "2026-07-20", "node": "SNLNDRO_1_N001",  "hour": 20, "final": "SELL_DA",  "er": None},
@@ -173,13 +174,13 @@ class V040Phase2Tests(unittest.TestCase):
             self.assertIn(zh, src, f"Hero 缺少中文动作 {zh}")
         self.assertIn('class="hero"', src, "缺 Hero 容器")
         self.assertIn("hero-spread", src, "缺 Hero Expected Spread 区")
-        # Case B → SELL_DA，数字一致
+        # Case B → NO_TRADE（V0.4.6：CONTROLX 被 R13 高波动拒绝；模型输出不变）
         c = mvp_web.app.test_client()
         r = c.post("/api/decision", json={"decision_date": "2026-07-16",
                                           "node": "CONTROLX_1_N001", "hour": 3, "evidence": "offline"})
         self.assertEqual(r.status_code, 200)
         d = r.get_json()["decision"]
-        self.assertEqual(d["final_recommendation"], "SELL_DA")
+        self.assertEqual(d["final_recommendation"], "NO_TRADE")
         self.assertAlmostEqual(d["model_output"]["expected_return"], 59.7937, places=2)
 
     def test_r02_buy_ui(self):

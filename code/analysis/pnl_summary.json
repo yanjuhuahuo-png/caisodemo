@@ -1,0 +1,905 @@
+{
+ "CONTROLX_1_N001": {
+  "total_actual_pnl": 0.0,
+  "total_pred_pnl": 0.0,
+  "traded_days": 0,
+  "win_days": 0,
+  "hit_rate": null,
+  "note": "风控全部拒绝，未交易",
+  "days": [
+   {
+    "target_date": "2026-07-01",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-02",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-03",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-04",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-05",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-06",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-07",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-08",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-09",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-10",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-11",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-12",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-13",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-14",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-15",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-16",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-17",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-18",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-19",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-20",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-21",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-22",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-23",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-24",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-25",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-26",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-27",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-28",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-29",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-30",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-31",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-08-01",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-08-02",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-08-03",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-08-04",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-08-05",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   }
+  ]
+ },
+ "SNLNDRO_1_N001": {
+  "total_actual_pnl": 11.39,
+  "total_pred_pnl": 95.92,
+  "traded_days": 7,
+  "win_days": 6,
+  "hit_rate": 0.857,
+  "note": "正常交易（风控放行）",
+  "days": [
+   {
+    "target_date": "2026-07-01",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-02",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-03",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-04",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-05",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-06",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-07",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-08",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-09",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-10",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-11",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-12",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-13",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-14",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-15",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-16",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-17",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-18",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-19",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-20",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-21",
+    "actual_pnl": -163.1,
+    "pred_pnl": 22.47,
+    "trades": 4
+   },
+   {
+    "target_date": "2026-07-22",
+    "actual_pnl": 61.83,
+    "pred_pnl": 26.86,
+    "trades": 5
+   },
+   {
+    "target_date": "2026-07-23",
+    "actual_pnl": 0.85,
+    "pred_pnl": 10.03,
+    "trades": 2
+   },
+   {
+    "target_date": "2026-07-24",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-25",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-26",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-27",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-28",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-29",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-30",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-31",
+    "actual_pnl": 13.08,
+    "pred_pnl": 15.8,
+    "trades": 3
+   },
+   {
+    "target_date": "2026-08-01",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-08-02",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-08-03",
+    "actual_pnl": 14.41,
+    "pred_pnl": 5.07,
+    "trades": 1
+   },
+   {
+    "target_date": "2026-08-04",
+    "actual_pnl": 24.1,
+    "pred_pnl": 5.3,
+    "trades": 1
+   },
+   {
+    "target_date": "2026-08-05",
+    "actual_pnl": 60.22,
+    "pred_pnl": 10.39,
+    "trades": 2
+   }
+  ]
+ },
+ "ELCAJNGT_7_N001": {
+  "total_actual_pnl": 0.0,
+  "total_pred_pnl": 0.0,
+  "traded_days": 0,
+  "win_days": 0,
+  "hit_rate": null,
+  "note": "风控全部拒绝，未交易",
+  "days": [
+   {
+    "target_date": "2026-07-01",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-02",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-03",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-04",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-05",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-06",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-07",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-08",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-09",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-10",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-11",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-12",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-13",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-14",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-15",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-16",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-17",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-18",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-19",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-20",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-21",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-22",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-23",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-24",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-25",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-26",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-27",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-28",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-29",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-30",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-31",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-08-01",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-08-02",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-08-03",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-08-04",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-08-05",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   }
+  ]
+ },
+ "portfolio": {
+  "total_actual_pnl": 11.39,
+  "total_pred_pnl": 95.92,
+  "traded_days": 7,
+  "trade_hours": 18,
+  "note": "三节点组合；按每日、每小时决策的实际与预测盈亏合计",
+  "days": [
+   {
+    "target_date": "2026-07-01",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-02",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-03",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-04",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-05",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-06",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-07",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-08",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-09",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-10",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-11",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-12",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-13",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-14",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-15",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-16",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-17",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-18",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-19",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-20",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-21",
+    "actual_pnl": -163.1,
+    "pred_pnl": 22.47,
+    "trades": 4
+   },
+   {
+    "target_date": "2026-07-22",
+    "actual_pnl": 61.83,
+    "pred_pnl": 26.86,
+    "trades": 5
+   },
+   {
+    "target_date": "2026-07-23",
+    "actual_pnl": 0.85,
+    "pred_pnl": 10.03,
+    "trades": 2
+   },
+   {
+    "target_date": "2026-07-24",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-25",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-26",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-27",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-28",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-29",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-30",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-07-31",
+    "actual_pnl": 13.08,
+    "pred_pnl": 15.8,
+    "trades": 3
+   },
+   {
+    "target_date": "2026-08-01",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-08-02",
+    "actual_pnl": 0.0,
+    "pred_pnl": 0.0,
+    "trades": 0
+   },
+   {
+    "target_date": "2026-08-03",
+    "actual_pnl": 14.41,
+    "pred_pnl": 5.07,
+    "trades": 1
+   },
+   {
+    "target_date": "2026-08-04",
+    "actual_pnl": 24.1,
+    "pred_pnl": 5.3,
+    "trades": 1
+   },
+   {
+    "target_date": "2026-08-05",
+    "actual_pnl": 60.22,
+    "pred_pnl": 10.39,
+    "trades": 2
+   }
+  ]
+ }
+}

@@ -51,10 +51,10 @@ from code.decision_service import (  # noqa: E402
 )
 from data_mode import MODE_MISSING, resolve_data_mode  # noqa: E402
 
-#: Golden Cases（与 docs/mvp_demo_cases.md / build_demo_artifacts.py 一致；
-#:   值来自 V0.3.1.1 —— 交易核心冻结的回归基准）
+#: Golden Cases（V0.4.6 修订：CONTROLX 被 R13 HIGH_ABS_VOLATILITY 拒绝 →
+#:   案例 B 由 SELL_DA/PASS 变为 NO_TRADE/REJECT；模型输出 expected_return 不变）
 GOLDEN_CASES = [
-    {"id": "B",  "decision_date": "2026-07-16", "node": "CONTROLX_1_N001", "hour": 3, "final": "SELL_DA",  "gate": "PASS"},
+    {"id": "B",  "decision_date": "2026-07-16", "node": "CONTROLX_1_N001", "hour": 3, "final": "NO_TRADE",  "gate": "REJECT"},
     {"id": "C1", "decision_date": "2026-07-08", "node": "CONTROLX_1_N001", "hour": 2, "final": "NO_TRADE", "gate": "REJECT"},
     {"id": "C2", "decision_date": "2026-07-10", "node": "SNLNDRO_1_N001",  "hour": 10, "final": "NO_TRADE", "gate": "WARNING"},
     {"id": "D",  "decision_date": "2026-07-20", "node": "SNLNDRO_1_N001",  "hour": 20, "final": "SELL_DA",  "gate": "WARNING"},

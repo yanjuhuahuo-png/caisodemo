@@ -116,6 +116,19 @@
   .kv ul { margin: 6px 0 0; padding-left: 18px; }
 
   .empty, .loading { color: var(--text-dim); font-size: 13px; padding: 26px 0; text-align: center; }
+  .pnl-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .pnl-tab { border: 1px solid var(--border); background: var(--surface); color: var(--text);
+             border-radius: 999px; padding: 5px 14px; font-size: 12.5px; cursor: pointer; }
+  .pnl-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .pnl-summary { margin-bottom: 10px; }
+  .rolling-totals { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                    gap: 10px; margin-bottom: 10px; }
+  .rolling-totals .rt-box { border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px;
+                            background: var(--surface-2); }
+  .rolling-totals .rt-box .rt-title { font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+  .rolling-totals .rt-box .rt-k { font-size: 11.5px; color: var(--text-dim); }
+  .rolling-totals .rt-box .rt-v { font-size: 18px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .rolling-totals .rt-box .rt-v.pos { color: var(--sell); } .rolling-totals .rt-box .rt-v.neg { color: var(--err); }
   .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--border);
              border-top-color: var(--accent); border-radius: 50%; margin-right: 8px;
              vertical-align: -2px; animation: spin .8s linear infinite; }
@@ -162,6 +175,40 @@
   </div>
 
   <div id="fc-out"></div>
+
+  <div class="card" style="margin-top:18px">
+    <h2>历史盈亏复盘 <span class="tag">2026-07-01 ~ 08-05 · 系统完整决策链 · 1 MWh/仓</span></h2>
+    <div class="pnl-tabs" id="pnl-tabs">
+      <button class="pnl-tab active" data-node="all">三节点总览</button>
+      <button class="pnl-tab" data-node="CONTROLX_1_N001">CONTROLX</button>
+      <button class="pnl-tab" data-node="SNLNDRO_1_N001">SNLNDRO</button>
+      <button class="pnl-tab" data-node="ELCAJNGT_7_N001">ELCA</button>
+    </div>
+    <div id="pnl-summary" class="pnl-summary"></div>
+    <iframe id="pnl-frame" src="/pnl/curve/all" title="盈亏曲线"
+            style="width:100%;height:520px;border:1px solid var(--border);border-radius:8px;background:#fff"></iframe>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <h2>滚动重预测对比 <span class="tag">实际价格 vs 预测价格 · 预测随已实现价格更新 · 6月/7月</span></h2>
+    <div class="pnl-tabs">
+      <button class="pnl-tab active" data-win="jul">7月（07-01 ~ 08-06）</button>
+      <button class="pnl-tab" data-win="jun">6月（06-01 ~ 07-01）</button>
+    </div>
+    <div class="pnl-tabs">
+      <button class="pnl-tab active" data-chart="price">价格（DA / RTPD）</button>
+      <button class="pnl-tab" data-chart="spread">价差</button>
+    </div>
+    <div class="pnl-tabs" id="pnl-rolling-nodes">
+      <button class="pnl-tab active" data-rnode="SNLNDRO_1_N001">SNLNDRO</button>
+      <button class="pnl-tab" data-rnode="CONTROLX_1_N001">CONTROLX</button>
+      <button class="pnl-tab" data-rnode="ELCAJNGT_7_N001">ELCA</button>
+    </div>
+    <div id="rolling-totals" class="rolling-totals"></div>
+    <div class="fc-note">滚动重预测：每天用截至该决策日已实现的实际价格重新打包并重新推理，预测会随实际走势变化（对比上方"系统完整决策链"的静态盈亏图）。</div>
+    <iframe id="rolling-frame" src="/pnl-rolling/jul/SNLNDRO_1_N001/price" title="滚动重预测对比"
+            style="width:100%;height:540px;border:1px solid var(--border);border-radius:8px;background:#fff"></iframe>
+  </div>
 
   <div class="foot">本系统为实验性研究工具，所有预测基于报价截止前可见的真实数据与推理估计，不构成投资建议，不保证盈利。</div>
 </div>
@@ -295,6 +342,74 @@ function render(out, r) {
 
 $("btn-fc").addEventListener("click", run);
 init();
+
+/* ---- 历史盈亏复盘（V0.4.6）---- */
+async function loadPnl() {
+  const box = $("pnl-summary");
+  try {
+    const m = await fetch("/api/pnl").then(r => r.json());
+    const s = m.summary || {};
+    const portfolio = s.portfolio;
+    const rows = Object.entries(s).filter(([node]) => node !== "portfolio").map(([node, v]) => {
+      const hit = v.hit_rate == null ? "—" : (v.hit_rate * 100).toFixed(0) + "%";
+      const p = v.total_actual_pnl >= 0;
+      return `<div class="metric"><div class="k">${esc(node.replace("_1_N001", ""))}（实际累计）</div>
+        <div class="v ${p ? "pos" : "neg"}">${p ? "+" : ""}${fmt(v.total_actual_pnl)} $/MWh</div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:4px">预测累计 ${v.total_pred_pnl >= 0 ? "+" : ""}${fmt(v.total_pred_pnl)} · 交易 ${v.traded_days} 天 · 命中率 ${hit}${v.note ? " · " + esc(v.note) : ""}</div></div>`;
+    });
+    const total = portfolio ? `<div class="metric" style="border:2px solid var(--accent)"><div class="k">全组合最终实际盈亏（2026-07-01 ~ 08-05）</div>
+        <div class="v ${portfolio.total_actual_pnl >= 0 ? "pos" : "neg"}">${portfolio.total_actual_pnl >= 0 ? "+" : ""}${fmt(portfolio.total_actual_pnl, 2)} $/MWh</div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:4px">预测最终 ${portfolio.total_pred_pnl >= 0 ? "+" : ""}${fmt(portfolio.total_pred_pnl, 2)} · 交易 ${portfolio.traded_days} 天 / ${portfolio.trade_hours} 小时 · ${esc(portfolio.note || "")}</div></div>` : "";
+    box.innerHTML = `<div class="metric-grid">${total}${rows.join("")}</div>`;
+  } catch (e) {
+    box.innerHTML = `<div class="error-box">盈亏数据不可用：${esc(e.message)}（运行 python code/analysis/pnl_curves.py 生成）</div>`;
+  }
+}
+document.querySelectorAll(".pnl-tab").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".pnl-tab").forEach(x => x.classList.remove("active"));
+  b.classList.add("active");
+  $("pnl-frame").src = "/pnl/curve/" + b.dataset.node;
+}));
+loadPnl();
+
+/* ---- 滚动重预测对比（V0.4.7）：窗口 × 图表类型 × 节点 → iframe ---- */
+let rWin = "jul", rChart = "price", rNode = "SNLNDRO_1_N001";
+function refreshRolling() {
+  $("rolling-frame").src = "/pnl-rolling/" + rWin + "/" + rNode + "/" + rChart;
+}
+document.querySelectorAll(".pnl-tabs [data-win]").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".pnl-tabs [data-win]").forEach(x => x.classList.remove("active"));
+  b.classList.add("active"); rWin = b.dataset.win; refreshRolling();
+}));
+document.querySelectorAll(".pnl-tabs [data-chart]").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".pnl-tabs [data-chart]").forEach(x => x.classList.remove("active"));
+  b.classList.add("active"); rChart = b.dataset.chart; refreshRolling();
+}));
+document.querySelectorAll("#pnl-rolling-nodes .pnl-tab").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("#pnl-rolling-nodes .pnl-tab").forEach(x => x.classList.remove("active"));
+  b.classList.add("active"); rNode = b.dataset.rnode; refreshRolling();
+}));
+
+/* ---- 滚动重预测总盈亏（6月 / 7月 实际 vs 预测）---- */
+async function loadRollingTotals() {
+  const box = $("rolling-totals");
+  try {
+    const m = await fetch("/api/pnl-rolling").then(r => r.json());
+    const mk = (title, d) => {
+      const pa = d.total_actual >= 0, pp = d.total_pred >= 0;
+      return `<div class="rt-box"><div class="rt-title">${esc(title)}</div>
+        <div class="rt-k">实际总盈亏</div>
+        <div class="rt-v ${pa ? "pos" : "neg"}">${pa ? "+" : ""}${fmt(d.total_actual)} $/MWh</div>
+        <div class="rt-k" style="margin-top:4px">预测总盈亏（期望值）</div>
+        <div class="rt-v ${pp ? "pos" : "neg"}" style="font-size:15px">${pp ? "+" : ""}${fmt(d.total_pred)} $/MWh</div>
+      </div>`;
+    };
+    box.innerHTML = mk("6月（06-01 ~ 07-01）", m.jun || {}) + mk("7月（07-01 ~ 08-06）", m.jul || {});
+  } catch (e) {
+    box.innerHTML = `<div class="error-box">总盈亏数据不可用：${esc(e.message)}</div>`;
+  }
+}
+loadRollingTotals();
 </script>
 </body>
 </html>
