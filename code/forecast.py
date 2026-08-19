@@ -205,6 +205,9 @@ def build_forecast_package(target_date: str, node: str) -> Dict[str, Any]:
             "spread_mean": _f(float(np.mean(sp_hist))) if len(sp_hist) else None,
             "spread_std": _f(float(np.std(sp_hist))) if len(sp_hist) else None,
         },
+        # V0.4.5：衍生信号（帮 LLM 正确把握"该不该出手"）
+        "volatility_class": _volatility_class(sp_hist),
+        "recent_spread_trend": _recent_trend(recent),
         "same_hour_spread_stats": hour_stats,
         "load_forecast": load_forecast,
         "weather_forecast": weather_forecast,
@@ -226,6 +229,29 @@ def _f(v: Any) -> Optional[float]:
         return round(x, 2)
     except (TypeError, ValueError):
         return None
+
+
+def _volatility_class(sp_hist: np.ndarray) -> str:
+    """近 7 日价差波动级别（低 <30 / 中 30~80 / 高 >80 $/MWh）。"""
+    if len(sp_hist) < 3:
+        return "低（样本不足）"
+    std = float(np.std(sp_hist))
+    if std > 80:
+        return "高"
+    if std >= 30:
+        return "中"
+    return "低"
+
+
+def _recent_trend(recent: List[Dict[str, Any]]) -> Optional[str]:
+    """近 3 个交易日的价差均值趋势（↑ / → / ↓ / 无数据）。"""
+    vals = [r.get("spread_avg") for r in recent[-3:] if r.get("spread_avg") is not None]
+    if len(vals) < 2:
+        return None
+    diff = vals[-1] - vals[0]
+    if abs(diff) < 2.0:
+        return f"持平（近3日价差均值 {vals[0]} → {vals[-1]}）"
+    return f"近3日价差均值 {vals[0]} → {vals[-1]}（{'上行' if diff > 0 else '下行'} {abs(diff):.1f}）"
 
 
 def fetch_actuals(target_date: str, node: str) -> Optional[Dict[str, Any]]:

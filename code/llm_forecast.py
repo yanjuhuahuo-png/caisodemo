@@ -71,13 +71,23 @@ FORECAST_SYSTEM_PROMPT = (
     "2. All numbers must be derived from the data package (recent price levels, volatility, "
     "load forecast, weather, same-hour spread distribution). Do NOT state any fact not in the "
     "package (e.g. no invented news events, no invented historical values).\n"
-    "3. spread_pred must be consistent with da_price_pred − rtpd_price_pred.\n"
+    "3. spread_pred must be consistent with da_price_pred − rtpd_price_pred, and decision must "
+    "match the spread sign: SELL_DA requires spread_pred > 0; BUY_DA requires spread_pred < 0.\n"
     "4. If the package has coverage_warnings (missing price lags / missing load), weigh them "
     "explicitly and lower confidence; if too little signal, output decision=NO_TRADE with reason.\n"
     "5. reasons: 2–5 concise Chinese sentences, each grounded in real numbers from the package. "
     "caveats: honest risks (data coverage gaps, experimental nature, ALPHA=WEAK).\n"
     "6. This is an experimental inference layer, NOT the system's frozen trading core; "
     "do not promise profit.\n"
+    "7. VOLATILITY DISCIPLINE: if volatility_class is 高 (recent spread_std > 80 $/MWh), the "
+    "spread direction is statistically near-unpredictable — default to decision=NO_TRADE unless "
+    "load/weather/same-hour history gives an exceptionally strong reason, and never set "
+    "confidence=高. When volatility_class is 中 or 高, prefer abstaining over a directional guess.\n"
+    "8. TREND ANCHORING: start from recent_stats.spread_mean (and recent_spread_trend) as your "
+    "base spread forecast; only deviate materially with a concrete reason (heat wave, load peak, "
+    "negative-price pattern). Do NOT flip the recent trend sign on a whim.\n"
+    "9. When uncertain about direction, NO_TRADE is the correct answer — a wrong directional "
+    "bet is worse than no trade.\n"
 )
 
 NAIVE_FALLBACK = (
@@ -166,6 +176,12 @@ def validate_forecast(parsed: Dict[str, Any], pkg: Dict[str, Any]) -> tuple:
     if pkg.get("coverage_warnings") and decision != "NO_TRADE":
         if str(parsed.get("confidence", "")).strip() == "高":
             sanity.append("数据包存在覆盖警告（缺失价格滞后/负荷），仍给出交易决策，置信度不应为'高'")
+    # 高波动纪律（V0.4.5 程序化护栏）：波动级别"高"时方向统计上不可预测
+    vc = str(pkg.get("volatility_class", "") or "")
+    if decision != "NO_TRADE" and "高" in vc:
+        sanity.append("近期价差波动为高（std>80 $/MWh），方向统计上不可预测，仍给出交易决策，失败风险高")
+        if str(parsed.get("confidence", "")).strip() == "高":
+            sanity.append("高波动场景下置信度不应为'高'")
 
     reasons = parsed.get("reasons")
     if not isinstance(reasons, list) or not reasons or not all(str(r).strip() for r in reasons):

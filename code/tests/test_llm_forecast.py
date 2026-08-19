@@ -69,6 +69,9 @@ class LLMForecastTests(unittest.TestCase):
         self.assertIsNotNone(p6["weather_forecast"])
         self.assertTrue(p6["recent_prices"], "应有近期价格历史")
         self.assertTrue(p6["same_hour_spread_stats"])
+        # V0.4.5：衍生信号（波动级别 / 近期趋势）
+        self.assertIn(p6["volatility_class"], ("低", "中", "高", "低（样本不足）"))
+        self.assertIn("recent_spread_trend", p6)
 
         p9 = build_forecast_package(T9, NODE)
         self.assertIsNone(p9["load_forecast"], "8/9 无负荷预报（2DA 至 08-07）→ 如实缺失")
